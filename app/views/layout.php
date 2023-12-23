@@ -91,7 +91,9 @@
                             class="mr-2 d-flex align-items-center justify-content-center pos-relative"
                             style="font-size: 20px">
                             <ion-icon name="cart-outline"></ion-icon>
-                            <span class="shopping-cart-amount">7</span>
+                            <span class="shopping-cart-amount">
+                            <?= (!empty($numberCart)) ? $numberCart : "0" ?>
+                            </span>
                         </a>
                         <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
                     </div>

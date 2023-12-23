@@ -9,19 +9,14 @@
 <section class="section-mainmenu p-t-110 p-b-70 bg1-pattern">
     <div class="container">
 
-        <!-- <form action="./shopping-cart" method="POST" id="form-add-to-cart">
-                <input type="text" name="food-id" id="food-id" value="<?= $food['id'] ?>" hidden />
-                <input type="text" name="food-name" id="food-name" value="<?= $food['name'] ?>" hidden />
-                <input type="text" name="food-price" id="food-price" value="<?= $food['price'] ?>" hidden />
-                <input type="text" name="food-image" id="food-image" value="<?= $food['image'] ?>" hidden />
-                <input type="text" name="amount" id="amount" value="0" hidden />
-            </form> -->
+       
 
 
         <div class="row">
             <div class="col-lg-6">
                 <div class="box-img mb-3">
                     <img src="public/images/<?= $food['image'] ?>" alt="food image" />
+                   
                 </div>
                 <div class="slide-image">
 
@@ -49,6 +44,9 @@
                     <span style="font-size: 14px; color: #636e72">(300 feedback)</span>
                 </div>
                 <form action="shopping-cart.php" method="post">
+                <input type="hidden" name="image" value="<?= $food['image'] ?>">
+                <input type="hidden" name="name" value="<?= $food['name'] ?>">
+                <input type="hidden" name="price" value="<?= $food['price'] ?>">
                     <div class="d-flex align-items-center">
                         <div class="price-box mb-3 mr-3">
                             <?= $food['price'] ?>
@@ -59,9 +57,8 @@
                                 <ion-icon name="remove"></ion-icon>
                             </div>
                             <div class="amount">
-                                <label
-                                    class="input-amount-food d-flex align-items-center justify-content-center mb-0">0</label>
-                                <input name="quantity" value="1" id="input-amount-food" hidden />
+                                <label class="input-amount-food input-amount-label d-flex align-items-center justify-content-center mb-0">0</label>
+                                <input type="hidden" name="quantity" value="0" id="input-amount-food"  />
                             </div>
                             <div class="max">
                                 <ion-icon name="add"></ion-icon>
@@ -74,7 +71,7 @@
                             <?= $food['description'] ?>
                         </p>
                     </div>
-                    <button name="id" value="<?= $food['id'] ?>" class="btn-add-to-cart">
+                    <button name="id" type="submit" value="<?= $food['id'] ?>" class="btn-add-to-cart">
                         Add to Cart
                         <ion-icon name="cart"></ion-icon>
                     </button>
@@ -129,3 +126,30 @@
         </button>
     </form>
 </div>
+<script>
+
+    const min = document.querySelector('.min');
+    const max = document.querySelector('.max');
+    const inputAmount = document.getElementById('input-amount-food');
+    const inputAmoutLabel =document.querySelector('.input-amount-label');
+
+    min.addEventListener('click', () => {
+        let value = parseInt(inputAmount.value);
+        if (!isNaN(value)) {
+            inputAmount.value = Math.max(value - 1, 0);
+            inputAmoutLabel.textContent =inputAmount.value;
+        }
+    });
+
+    max.addEventListener('click', () => {
+        let value = parseInt(inputAmount.value);
+        if (!isNaN(value) && value < 30) {
+            inputAmount.value = value + 1;
+            inputAmoutLabel.textContent =inputAmount.value;
+        }
+        
+    });
+
+
+
+</script>

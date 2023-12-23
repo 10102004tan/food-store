@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th12 19, 2023 lúc 10:25 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.1.17
+-- Host: localhost
+-- Generation Time: Dec 23, 2023 at 02:41 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,80 +18,50 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `food_store_db`
+-- Database: `food_store_db`
 --
+CREATE DATABASE IF NOT EXISTS `food_store_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `food_store_db`;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `categories`
---
-
-CREATE TABLE `categories` (
-  `category_id` int(11) NOT NULL,
-  `category_name` text NOT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `href_value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `categories`
---
-
-INSERT INTO `categories` (`category_id`, `category_name`, `parent_id`, `href_value`) VALUES
-(11, 'Home', 0, 'home'),
-(12, 'Menu', 0, 'menu'),
-(13, 'Reservation', 0, 'reservation'),
-(14, 'Gallery', 0, 'gallery'),
-(15, 'About', 0, 'about'),
-(16, 'Blog', 0, 'blog'),
-(18, 'Contact', 0, 'contact');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE `members` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(2000) NOT NULL,
-  `role` int(11) NOT NULL DEFAULT 0,
+  `role` int(11) NOT NULL DEFAULT 1,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `members`
+-- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`id`, `username`, `password`, `role`, `email`) VALUES
-(6, 'Admin', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 1, 'dat@gmail.com'),
-(8, 'NguyenTienDat', '0gVIhRwALHiWmFQfNfes1c+NLnWne+H6nWGEHJG/wws=', 0, 'dat@gmail.com'),
-(9, 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 0, 'user@gmail.com'),
-(10, 'nhi', 'lSSLGlEDM2g49+hmtF+QN0vhp0Mt8BeUlIlGsB40iHg=', 0, 'nhi@gmail.com'),
-(11, 'dat', 'lH1aNf8v5SL9pbQxr5VeOyeVXrwYyeNoSwe1GuESRh8=', 0, 'dat@gmail.com'),
-(12, 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 1, 'admin@gmail.com'),
-(13, 'Nguyen Tien Dat', 'yEqeOtFEtD2nOZWloScE9wf7NOfzCBaxqVx7PEQf3Eo=', 0, 'dat@gmail.com'),
-(14, 'NguyenTienDat', 'yEqeOtFEtD2nOZWloScE9wf7NOfzCBaxqVx7PEQf3Eo=', 0, 'dat@gmail.com');
+(15, 'admin', '$2y$10$1KVHuCTUV6TmYhnNRwxWIO.5SuK8yDEKgeGNq4SYMXuJ8/EAFv4bO', 0, 'tan@gmail.com'),
+(16, 'tan', '$2y$10$0tkiCe5hQ4ACBayWGcO.SOVzisq9iEBxunL1EtEaEfm/JWTgNXwS2', 1, 'tan@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `menus`
+-- Table structure for table `menus`
 --
 
 CREATE TABLE `menus` (
-  `menu_id` int(11) NOT NULL,
-  `menu_name` varchar(255) NOT NULL,
-  `menu_description` text NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `menus`
+-- Dumping data for table `menus`
 --
 
-INSERT INTO `menus` (`menu_id`, `menu_name`, `menu_description`) VALUES
+INSERT INTO `menus` (`id`, `name`, `description`) VALUES
 (6, 'Starters', 'List of appetizers'),
 (8, 'Drinks', 'Drinks'),
 (9, 'Dessert', 'Dessert'),
@@ -102,23 +72,23 @@ INSERT INTO `menus` (`menu_id`, `menu_name`, `menu_description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
-  `product_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
-  `product_image` text NOT NULL,
-  `product_name` varchar(500) NOT NULL,
-  `product_description` text NOT NULL,
-  `product_price` int(11) NOT NULL
+  `image` text NOT NULL,
+  `name` varchar(500) NOT NULL,
+  `description` text NOT NULL,
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `menu_id`, `product_image`, `product_name`, `product_description`, `product_price`) VALUES
+INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`) VALUES
 (32, 10, 'spaghetti-bolognese-36.jpg', 'Spaghetti Bolognese', 'A popular pasta dish with a sauce made of a mixture of ground beef, tomato sauce, onions, carrots, and various spices.', 10),
 (33, 10, 'pizza2-4648-1526893452-6893-1526984399.jpg', 'Margherita Pizza', 'A basic type of pizza with tomato sauce, mozzarella cheese, and fresh basil leaves.', 10),
 (34, 10, 'risotto-porcini-e1484691105675.webp', 'Risotto ai Funghi', 'Risotto cooked with mushrooms, broth, and Parmesan cheese, creating a delicious and creamy dish.', 15),
@@ -127,7 +97,7 @@ INSERT INTO `products` (`product_id`, `menu_id`, `product_image`, `product_name`
 (37, 10, '1431766579357.jpeg', 'Osso Buco', 'Beef shanks cooked in a pot with tomato sauce, onions, carrots, and spices', 30),
 (38, 9, 'Tiramisu_-_Raffaele_Diomede.jpg', 'Tiramisu', 'A delicious dessert made from layers of sponge cake soaked in coffee, fresh cream, and cocoa', 5),
 (39, 11, 'Easy-Fettuccine-Alfredo-Hero-Horizontal.jpg', 'Fettuccine Alfredo', 'A pasta dish with cream sauce, butter, and Parmesan cheese, creating a rich and creamy flavor', 20),
-(40, 11, 'classic-veal-piccata-recipe-995302-hero-01-8066d25164ce498f85ff5f4634e6e113.jpg', 'Veal Piccata', 'Lightly grilled veal, often prepared with lemon and caper sauce, typically served with rice or pasta.', 20),
+(40, 11, '80', 'Veal Piccata', 'Lightly grilled veal, often prepared with lemon and caper sauce, typically served with rice or pasta.', 20),
 (41, 11, 'gnocchi-168125-1.jpeg', 'Gnocchi', 'A delicate type of dumpling made from potatoes, usually served with various sauces such as tomato sauce, gorgonzola sauce, or mushroom sauce', 20),
 (42, 11, 'chicken-cannelloni-with-roasted-red-bell-pepper-sauce_batch7335_3x2-136-abe48c9f40e04ea8a2abe4b98b4038b1.jpg', 'Cannelloni', 'A rolled pasta, often filled with meat, vegetables, or seafood, and covered with tomato sauce or bechamel', 20),
 (43, 11, '54165-balsamic-bruschetta-DDMFS-4x3-e2b55b5ca39b4c1783e524a2461634ea.jpg', 'Bruschetta', 'A popular appetizer consisting of crispy grilled bread, typically spread with tomatoes, garlic, basil, and olive oil', 10),
@@ -153,26 +123,28 @@ INSERT INTO `products` (`product_id`, `menu_id`, `product_image`, `product_name`
 (70, 12, 'spaghetti-alle-vongole-recipe-jpg-1676890130.jpg', 'Linguine alle Vongole', 'A popular pasta dish with clam sauce, garlic, chili, and olive oil', 30),
 (75, 9, 'cannoli-small-8-scaled.jpg', 'Cannoli', 'Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients', 4),
 (76, 9, 'gelato-1296x728-header.webp', 'Gelato', 'Description: An Italian ice cream similar to regular ice cream but with a softer texture and lower fat content', 4),
-(77, 9, 'affogato-4776668-hero-08-40d7a68d12ba46f48eaea3c43aba715c.jpg', 'Affogatoo', 'Description: A cup of strong black espresso poured directly over a scoop of vanilla or cappuccino-flavored ice cream', 5);
+(77, 9, 'ac18aa15611572f79a25dfc41356ed0b.jpg', 'Affogatoo', 'Description: A cup of strong black espresso poured directly over a scoop of vanilla or cappuccino-flavored ice cream', 5),
+(90, 6, 'c95916519436ceac9184ae946aa4f1f520231221090252.jpg', 'Test', 'Test desc', 2000000),
+(91, 8, 'c95916519436ceac9184ae946aa4f1f520231221101809.jpg', 'test2', 'desc', 1234);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product_comments`
+-- Table structure for table `product_comments`
 --
 
 CREATE TABLE `product_comments` (
-  `comment_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `comment` varchar(500) NOT NULL,
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `product_comments`
+-- Dumping data for table `product_comments`
 --
 
-INSERT INTO `product_comments` (`comment_id`, `product_id`, `comment`, `username`) VALUES
+INSERT INTO `product_comments` (`id`, `product_id`, `comment`, `username`) VALUES
 (1, 40, 'Nice', 'admin'),
 (2, 32, 'ãããããããã', 'admin'),
 (3, 32, 'Nice', 'NguyenTienDat'),
@@ -185,20 +157,20 @@ INSERT INTO `product_comments` (`comment_id`, `product_id`, `comment`, `username
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product_images`
+-- Table structure for table `product_images`
 --
 
 CREATE TABLE `product_images` (
-  `image_id` int(11) NOT NULL,
-  `image_name` text NOT NULL,
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `product_images`
+-- Dumping data for table `product_images`
 --
 
-INSERT INTO `product_images` (`image_id`, `image_name`, `product_id`) VALUES
+INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
 (95, 'spaghetti-bolognese-30.jpg', 32),
 (96, 'spaghetti-bolognese-32.jpg', 32),
 (97, 'spaghetti-bolognese-33.jpg', 32),
@@ -236,30 +208,32 @@ INSERT INTO `product_images` (`image_id`, `image_name`, `product_id`) VALUES
 (129, 'code456sdf.png', 78),
 (130, 'Screenshot from 2023-12-15 21-48-29.png', 78),
 (131, 'Screenshot from 2023-12-15 21-49-53.png', 78),
-(132, 'sdfsdf.png', 78);
+(132, 'sdfsdf.png', 78),
+(157, '836a6d800e5f9defdbbc79565c841dec20231221090304.png', 90),
+(158, '47941587e0e2351c9de87c73cb0e44cd20231221090304.png', 90);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `reservation`
+-- Table structure for table `reservation`
 --
 
 CREATE TABLE `reservation` (
-  `reservation_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `people` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `reservation_status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `reservation`
+-- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`reservation_id`, `date`, `people`, `name`, `phone`, `email`, `reservation_status`) VALUES
-(2, '2023-12-15 00:00:00', 1, 'Nguyen Tien Dat', '009909009', 'dat@gmail.com', 1),
+INSERT INTO `reservation` (`id`, `date`, `people`, `name`, `phone`, `email`, `status`) VALUES
+(2, '2023-12-15 00:00:00', 1, 'Nguyen Tien Dat', '009909009', 'dat@gmail.com', 2),
 (3, '2023-12-18 00:00:00', 4, 'Nguyen Thi Thanh Thao', '09880098', 'thao@gmail.com', 2),
 (4, '2023-12-20 00:00:00', 5, 'Nguyen Van Thanh', '0987889987', 'thanh@gmail.com', 1),
 (5, '2023-12-29 00:00:00', 6, 'Nguyen Thanh Cong', '0999900990', 'cong@gmail.com', 1),
@@ -267,101 +241,91 @@ INSERT INTO `reservation` (`reservation_id`, `date`, `people`, `name`, `phone`, 
 (7, '2023-12-20 00:00:00', 4, 'Nguyen Van Thanh', '09009900', 'a@gmail.com', 2),
 (8, '2023-12-05 00:00:00', 4, 'Nguyen Thanh Son', '098009009', 'email@gmail.com', 2),
 (9, '2024-05-10 00:00:00', 1, 'Nguyen Thi Thuy Duong', '090908934', 'shin@gmail.com', 1),
-(10, '2023-12-05 00:00:00', 1, 'Tran Thi Hong', '325345345', 'hong@gmail.com', 2),
+(10, '2023-12-05 00:00:00', 1, 'Tran Thi Hong', '325345345', 'hong@gmail.com', 1),
 (20, '2023-12-19 10:30:00', 3, 'Nguyen Tien Dat', '099090', 'dat@gmail.com', 1),
-(21, '2023-12-19 09:00:00', 1, 'New', '098090', 'new', 2);
+(33, '2023-12-15 09:30:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 2),
+(34, '2023-12-15 09:30:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 2),
+(35, '2023-12-21 10:30:00', 4, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Chỉ mục cho bảng `members`
+-- Indexes for table `members`
 --
 ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `menus`
+-- Indexes for table `menus`
 --
 ALTER TABLE `menus`
-  ADD PRIMARY KEY (`menu_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `product_comments`
+-- Indexes for table `product_comments`
 --
 ALTER TABLE `product_comments`
-  ADD PRIMARY KEY (`comment_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `product_images`
+-- Indexes for table `product_images`
 --
 ALTER TABLE `product_images`
-  ADD PRIMARY KEY (`image_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `reservation`
+-- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`reservation_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `categories`
---
-ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT cho bảng `members`
+-- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `menus`
+-- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
--- AUTO_INCREMENT cho bảng `product_comments`
+-- AUTO_INCREMENT for table `product_comments`
 --
 ALTER TABLE `product_comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `product_images`
+-- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
--- AUTO_INCREMENT cho bảng `reservation`
+-- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
