@@ -1,22 +1,30 @@
 <?php
 include 'config/database.php';
-if (isset($_SESSION['username'])){
-    session_unset();
-}
-$username;
-$password;
+
+
+$username = "";
+$password = "";
 $member = new Member();
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    if ($member->login($username, $password) == -1) {
-        $_SESSION['danger'] = "";
-    } else if ($member->login($username, $password) == 0) {
-        $_SESSION['username'] = $username;
-        header('location: app/views/layout-admin.php');
-    } else {
-        $_SESSION['username'] = $username;
-        header('location: index.php');
+// Check if user is already login
+if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+    $username = $_COOKIE['username'];
+    $password = $_COOKIE['password'];
+} else {
+    // User is not logged in
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+    }
+}
+
+if (isset($username) && isset($password) && $username != "" && $password != "") {
+    $status = $member->login($username, $password);
+    if ($status == -1) {
+        $_SESSION['danger'] = "Something went wrong !!!";
+    } else if ($status == 0) { // Admin
+        header("location: app/views/layout-admin.php");
+    } else if ($status == 1) { // User
+        header("location: index.php");
     }
 }
 
@@ -50,9 +58,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
                         <h3 class="mb-4 text-center">Login page</h3>
-                        <?php if (isset($_SESSION['danger'])): ?>
+                        <?php if (isset($_SESSION['danger'])) : ?>
                             <div class="alert alert-danger">Sai tên đăng nhập hoặc mật khâu</div>
-                            <?php
+                        <?php
                             session_unset();
                         endif ?>
                         <form action="#" class="signin-form" action="" method="POST">
@@ -60,10 +68,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                                 <input type="text" class="form-control" placeholder="Username" name="username" required>
                             </div>
                             <div class="form-group">
-                                <input id="password-field" type="password" class="form-control" placeholder="Password"
-                                    name="password" required>
-                                <span toggle="#password-field"
-                                    class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required>
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>

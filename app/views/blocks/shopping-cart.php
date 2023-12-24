@@ -1,6 +1,5 @@
 <!-- Title Page -->
-<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-    style="background-image: url(images/bg-title-page-01.jpg);">
+<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(public/images/bg-title-page-01.jpg);">
     <h2 class="tit6 t-center">
         Shopping Cart
     </h2>
@@ -23,13 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($cart as $item): ?>
+                <?php foreach ($cart as $item) : ?>
                     <tr>
                         <td>
                             <?= $item['name'] ?>
                             </th>
-                        <td><img src="public/storage/<?= $item['image'] ?>" style="max-width: 120px; border-radius: 10px"
-                                alt="food image" /></td>
+                        <td><img src="public/storage/<?= $item['image'] ?>" style="max-width: 120px; border-radius: 10px" alt="food image" /></td>
                         <td>
                             <?= $item['quantity'] ?>
                         </td>
