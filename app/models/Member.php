@@ -29,6 +29,7 @@ class Member extends Database
         }
 
         return $status; // 0 => admin , 1 => user
+
     }
 
     public function checkUsername($username){
@@ -56,3 +57,4 @@ class Member extends Database
         return $sql->execute();
     }
 }
+

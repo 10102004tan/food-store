@@ -199,7 +199,9 @@ if (isset($_GET['page'])) {
                 <td>
                     <?= $food['name'] ?>
                 </td>
+
                 <td class="t-desc">
+
                     <?= $food['description'] ?>
                 </td>
                 <td>
@@ -282,7 +284,9 @@ const btnChooseMenuImage = document.querySelector(".btn-choose-image-file");
 const boxImage = document.querySelector(".grid-box-image");
 const inputEditFoodName = document.querySelector("#food-name-edit");
 const inputEditFoodPrice = document.querySelector("#food-price-edit");
+
 const inputEditFoodDescription = document.querySelector(".food-description-edit");
+
 const boxDisplayImage = document.querySelector(".show-image img");
 const inputEditFoodId = document.querySelector("#food-id-edit");
 const labelEditMenuIds = document.querySelectorAll(".label-menu-id-edit");
@@ -355,9 +359,11 @@ btnEditCategory.forEach((btn) => {
                 id: btn.value,
             },
             success: function(data) {
+
                 inputEditFoodId.value = data.id;
                 inputEditFoodName.value = data.name;
                 CKEDITOR.instances['product-content-edit'].setData(data.description);
+
                 inputEditFoodPrice.value = data.price;
                 inputFoodImageEdit.value = data.image;
                 inputMenuIdEdit.forEach((input) => {

@@ -1,10 +1,9 @@
 <?php
 include 'config/database.php';
-if (isset($_SESSION['username'])){
-    session_unset();
-}
-$username;
-$password;
+
+
+$username = "";
+$password = "";
 $member = new Member();
 // Check if user is already login
 if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
@@ -15,6 +14,8 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+
     }
 }
 
