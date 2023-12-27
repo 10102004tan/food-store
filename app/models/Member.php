@@ -21,4 +21,16 @@ class Member extends Database {
 
         return $status;
     }
+
+
+    public function checkUsername($username){
+        $sql = parent::$connection->prepare("");
+    }
+
+    public function setTokenForUsername($username,$token){
+        $sql = parent::$connection->prepare("UPDATE `members` SET `token`= ? WHERE username = ?");
+        $sql->bind_param("ss",$token,$username);
+        return $sql->execute();
+
+    }
 }

@@ -1,26 +1,3 @@
-<?php
-include 'config/database.php';
-if (isset($_SESSION['username'])) {
-    session_unset();
-}
-$username;
-$password;
-$member = new Member();
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    if ($member->login($username, $password) == -1) {
-        $_SESSION['danger'] = "";
-    } else if ($member->login($username, $password) == 0) {
-        $_SESSION['username'] = $username;
-        header('location: app/views/layout-admin.php');
-    } else {
-        $_SESSION['username'] = $username;
-        header('location: index.php');
-    }
-}
-
-?>
 <!doctype html>
 <html lang="en">
 
@@ -92,5 +69,4 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <script src="public/js/bootstrap.min.js"></script>
     <script src="public/js/main_login.js"></script>
 </body>
-
 </html>
