@@ -344,3 +344,173 @@ table {
 .image-menu-shadow{
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
+
+/* Checkout */
+.box-add-info{
+    padding: 80px 0 !important;
+}
+
+.title-box{
+    font-size: 24px;
+    font-family: 600;
+    margin-bottom: 16px;
+}
+
+.contact-information .box-contact {
+    margin-bottom: 8px;
+}
+
+.contact-information .box-contact .box-field .field-contact{
+    width: 100%;
+    border-radius: none;
+    -webkit-box-shadow: none;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.6s linear !important;
+}
+
+.box-contact-title{
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.box-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    text-align: start;
+}
+
+.box-contact .box-contact-title{
+    width: 100%;
+}
+
+.box-field{
+    width: 100%;
+}
+
+.mutil-field{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.contact-information .box-contact .box-field .field-contact:focus {
+    border-color: #000 !important;
+}
+
+.btn-checkout{
+    float: right;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.checkout-wrapper{
+    padding: 80px 120px;
+    background-color: #fff;
+}
+
+.box-product{
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 12px;
+}
+
+.products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    width: fit-content;
+    float: right;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.products .product-item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+}
+
+.product-item img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-name{
+    font-size: 18px;
+}
+
+.product-price{
+    font-weight: 500;
+}
+
+.total-pay{
+    float: right;
+}
+
+.btn-pay-with-momo{
+    padding: 12px;
+    color: #fff;
+    background-color: #af1a70;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-pay-with-vnpay{
+    padding: 12px;
+    color: #fff;
+    background-color: #039CD9;
+    cursor: pointer;
+    user-select: none;
+}
+
+.page-wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-payment{
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn-pay-back{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-pay-back:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.pay-title{
+    text-transform: uppercase;
+    margin-top: 12px;
+    font-weight: 500;
+}

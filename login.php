@@ -1,32 +1,31 @@
 <?php
 include 'config/database.php';
+include 'helper/token_hash_helper.php';
 
 
-$username = "";
-$password = "";
 $member = new Member();
 // Check if user is already login
-if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
-    $username = $_COOKIE['username'];
-    $password = $_COOKIE['password'];
+if (isset($_COOKIE['token'])) {
+    $token = $_COOKIE['token'];
+    $user = $member->getUserByToken($token);
+    header("location: index.php");
 } else {
     // User is not logged in
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+        $status = $member->login($username, $password);
+        if ($status == -1) {
+            $_SESSION['danger'] = "Something went wrong !!!";
+        } else if ($status == 0) { // Admin
+            header("location: app/views/layout-admin.php");
+        } else if ($status == 1) { // User
+            header("location: index.php");
+        }
     }
 }
 
-if (isset($username) && isset($password) && $username != "" && $password != "") {
-    $status = $member->login($username, $password);
-    if ($status == -1) {
-        $_SESSION['danger'] = "Something went wrong !!!";
-    } else if ($status == 0) { // Admin
-        header("location: app/views/layout-admin.php");
-    } else if ($status == 1) { // User
-        header("location: index.php");
-    }
-}
 
 ?>
 <!doctype html>
