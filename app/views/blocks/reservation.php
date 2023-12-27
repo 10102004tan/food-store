@@ -18,24 +18,31 @@ if (isset($_POST["name"])
     $email = $_POST["email"];
     $time = $_POST["time"];
     $date = $date . " " . $time;
-    // $dateTime = date("Y-m-d H:i", strtotime($date));
-    // $dateTimeObj = new DateTime($date);
     $dateTimeObj = DateTime::createFromFormat('d/m/Y H:i', $date);
     $dateTime = $dateTimeObj->format('Y-m-d H:i:s');
-    // echo $date;
-    // echo $dateTime;
-    // echo $dateTime;
     $reservation = new Reservation();
     if ($reservation->setPlace($dateTime,$people,$name,$phone,$email)){
-        $_SESSION['notify-success'] = "";
-        
+        $content = "
+        Cảm ơn bạn tin tưởng sử dụng dịch vụ của Food store. Đơn hàng của bạn đã được xác nhận <br>
+        <h5>Chi tiết đơn hàng : </h5>  <br>
+        Tên khách hàng : $name  <br>
+        Thời gian : $date  <br>
+        Số lượng khách : $people  <br>
+        Số điện thoại : $phone  <br>
+        Email : $email  <br>
+        Trạng thái : Đang xét duyệt  <br>
+        <br>  <br>
+        Cảm ơn quý khách đã tin tưởng <3 <3
+        ";
+        $subject = "[Food Store] Cập nhật trạng thái bàn";
+        sendCodeMail($email,$subject,$content);
+        echo "<script>alert('Đăng kí bàn đã được ghi nhận');
+        window.location.href = 'reservation.php';
+        </script>";
     }
     else{
-        $_SESSION['notify-fail'] = "";
+        echo "<script>alert('Đăng kí thất bại')</script>";
     }
-
-    header('location: reservation.php');
-
 }
 ?>
 <!-- Title Page -->
@@ -49,16 +56,7 @@ if (isset($_POST["name"])
 <!-- Reservation -->
 <section class="section-reservation bg1-pattern p-t-100 p-b-113">
     <div class="container">
-        <?php if (isset($_SESSION['notify-success'])): ?>
-        <div class="alert alert-success">Đăng kí bàn thành công, vui lòng đợi phản hồi quan email</div>
-        <?php
-        unset($_SESSION['notify-success']);
-        endif ?>
-        <?php if (isset($_SESSION['notify-fail'])): ?>
-        <div class="alert alert-danger">Đăng kí bàn thất bại</div>
-        <?php 
-        unset($_SESSION['notify-fail']);
-        endif ?>
+        
         <div class="row">
             <div class="col-lg-12 p-b-30">
                 <div class="t-center">
@@ -223,4 +221,43 @@ if (isset($_POST["name"])
         </div>
     </div>
 </section>
+
+<?php
+function sendCodeMail($email,$subject,$content)
+{
+    require "public/PHPMailer/src/PHPMailer.php";
+    require "public/PHPMailer/src/SMTP.php"; 
+    require 'public/PHPMailer/src/Exception.php'; 
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);//true:enables exceptions
+    try {
+        $mail->SMTPDebug = 0; 
+        $mail->isSMTP();  
+        $mail->CharSet  = "utf-8";
+        $mail->Host = 'smtp.gmail.com'; 
+        $mail->SMTPAuth = true; 
+        $mail->Username = 'tannp.42.student@fit.tdc.edu.vn';
+        $mail->Password = 'tandz1234'; 
+        $mail->SMTPSecure = 'ssl'; 
+        $mail->Port = 465;           
+        $mail->setFrom('tannp.42.student@fit.tdc.edu.vn', 'Food store admin' ); 
+        $mail->addAddress($email); 
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $noidungthu = "<div style='color: #000'>$content</div>"; 
+        $mail->Body = $noidungthu;
+        $mail->smtpConnect( array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                "allow_self_signed" => true
+            )
+        ));
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        // echo 'Error: ', $mail->ErrorInfo;
+        return false;
+    }
+} 
+?>
 

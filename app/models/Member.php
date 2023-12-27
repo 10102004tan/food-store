@@ -55,4 +55,18 @@ class Member extends Database
         $sql->bind_param("ss",$password,$username);
         return $sql->execute();
     }
+
+    public function checkEmail($email,$username){
+        $sql = parent::$connection->prepare("SELECT email,username from members");
+        $emails = parent::select($sql);
+        foreach ($emails as $item) {
+            if ($item['email'] == $email || $item['username'] == $username){
+                return false;
+            }
+
+        }
+
+        return true;
+        
+    }
 }

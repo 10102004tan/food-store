@@ -3,18 +3,26 @@ include 'config/database.php';
 $username;
 $password;
 $email;
-
+$errors = array();
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
     $email = $_POST["email"];
     $member = new Member();
-    if ($member->register($username, $password,$email)) {
-        $_SESSION['success'] = "";
+    $_SESSION['info'] = "";
+    if ($member->checkEmail($email,$username))
+    {
+        if ($member->register($username, $password,$email)) {
+            $_SESSION['info'] = "Đăng kí thành công";
+        }
+        else{
+            $errors['error-register'] = "Đăng kí thất bại";
+        }
     }
     else{
-        $_SESSION['danger'] = "";
+        $errors['email-invalid'] = "Email hoặc tên đăng nhập đã tồn tại.";
     }
+    
 }
 
 ?>
@@ -43,17 +51,33 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
             <div class="row justify-content-center">
 
                 <div class="col-md-6 col-lg-4">
-                    <?php if (isset($_SESSION['success'])) : ?>
-                    <div class="alert alert-success">Đăng kí thành công</div>
-                    <?php 
-                    session_unset();
-                    endif ?>
+                    
 
-                    <?php if (isset($_SESSION['danger'])) : ?>
-                    <div class="alert alert-danger">Username đã tồn tại</div>
-                    <?php
-                    session_unset();
-                    endif ?>
+                <?php 
+                    if(isset($_SESSION['info']) && !empty($_SESSION['info'])){
+                        ?>
+                        <div class="alert alert-success text-center" style="padding: 0.4rem 0.4rem">
+                            <?php echo $_SESSION['info'];
+                            unset($_SESSION['info'])
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                <?php
+                    if(count($errors) > 0){
+                        ?>
+                        <div class="alert alert-danger text-center">
+                            <?php
+                            foreach($errors as $showerror){
+                                echo $showerror;
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
 
                     <div class="login-wrap p-0">
                         <h3 class="mb-4 text-center">Register page</h3>

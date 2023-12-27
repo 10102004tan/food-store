@@ -16,7 +16,7 @@ require_once "controllerUserData.php"; ?>
     <link rel="stylesheet" href="public/css/style.css">
 
 </head>
-<body class="img js-fullheight w-100" style="background-image: url(public/images/bg-intro-010.jpg); height: 100vh">
+<body class="img js-fullheight w-100" style="background-image: url(public/images/bg-intro-01.jpg); height: 100vh">
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
