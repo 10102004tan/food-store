@@ -14,6 +14,8 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+
     }
 }
 
@@ -27,7 +29,6 @@ if (isset($username) && isset($password) && $username != "" && $password != "") 
         header("location: index.php");
     }
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -82,7 +83,7 @@ if (isset($username) && isset($password) && $username != "" && $password != "") 
                                     </label>
                                 </div>
                                 <div class="w-50 text-md-right">
-                                    <a href="#" style="color: #fff">Forgot Password</a>
+                                    <a href="forget-pw.php" style="color: #fff">Forgot Password</a>
                                 </div>
                             </div>
                         </form>

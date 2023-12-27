@@ -29,10 +29,10 @@ class Member extends Database
         }
 
         return $status; // 0 => admin , 1 => user
-    }
-}
 
-public function checkUsername($username){
+    }
+
+    public function checkUsername($username){
         $sql = parent::$connection->prepare("SELECT * FROM members where username = ?");
         $sql->bind_param("s", $username);
         return count(parent::select($sql));
@@ -56,3 +56,5 @@ public function checkUsername($username){
         $sql->bind_param("ss",$password,$username);
         return $sql->execute();
     }
+}
+
