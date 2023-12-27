@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 23, 2023 at 02:41 PM
+-- Generation Time: Dec 27, 2023 at 01:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,7 @@ CREATE TABLE `members` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(2000) NOT NULL,
+  `code` varchar(100) DEFAULT NULL,
   `role` int(11) NOT NULL DEFAULT 1,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -41,9 +42,11 @@ CREATE TABLE `members` (
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `username`, `password`, `role`, `email`) VALUES
-(15, 'admin', '$2y$10$1KVHuCTUV6TmYhnNRwxWIO.5SuK8yDEKgeGNq4SYMXuJ8/EAFv4bO', 0, 'tan@gmail.com'),
-(16, 'tan', '$2y$10$0tkiCe5hQ4ACBayWGcO.SOVzisq9iEBxunL1EtEaEfm/JWTgNXwS2', 1, 'tan@gmail.com');
+INSERT INTO `members` (`id`, `username`, `password`, `code`, `role`, `email`) VALUES
+(15, 'admin', '$2y$10$PvKbkajQ8yIMujtd4vh/yer0FmkrtYtFj/VzQSZl4PKfp.WuFmPKO', '0', 0, 'tan@gmail.com'),
+(16, 'tan', '$2y$10$u8svlLWjtMn0sm.7oXn9l.xN6P8OD6EohSA9sy7Fb4rg326H5uqmi', '0', 1, 'tannguyen.10102004@gmail.com'),
+(17, 'tannguyen123', '$2y$10$K3R5CGfnN.0/DHq0ksbeXOQ0BdCZvoD5EVuc.ay3uNLbxt/ETdU/m', NULL, 1, 'tannguyen.10102004@gmail.com'),
+(22, 'tannguyen', '$2y$10$JIH1sSOP7.UsaP.nY4BYgOHSrzQh1.FuimNe4mlCU/XYYYwIUnS/O', '776921', 1, 'tannguyen.10ddd102004@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -106,7 +109,7 @@ INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`
 (46, 8, 'Chianti-DOCG_1024x1024.webp', 'Chianti', 'An Italian red wine, often paired with pasta, red meat, and pizza', 30),
 (47, 8, 'Prosecco_di_Conegliano_bottle_and_glass.jpg', 'Prosecco', 'An Italian sparkling wine, suitable as an aperitif or to conclude a meal', 15),
 (48, 8, 'aperol-spritz-cocktail-featured.jpg', 'Negroni', 'A traditional Italian cocktail, made with gin, red vermouth, and Campari', 10),
-(49, 8, 'Bottega-Limoncino-limoncello.jpg', 'Limoncello', 'A famous citrus liqueur from the Campania region, often served as a digestif', 10),
+(49, 8, 'Bottega-Limoncino-limoncello.jpg', 'Limoncello', '<p><strong>A famous citrus liqueur from the Campania region, often served as a digestif</strong></p>\r\n', 10),
 (50, 8, 'cach-pha-espresso-1.jpg', 'Espresso', 'Dark, strong, and sophisticated, espresso is a common choice to finish an Italian meal', 5),
 (51, 8, 'unnamed_be2775a1-186d-40c1-b094-488fa5fa4050.webp', 'CaffÃ¨ Latte', 'A combination of espresso and warm milk, often consumed during breakfast or in the afternoon', 5),
 (52, 8, 'bia-peroni-nastro-azzurro-5-1-y-chai-330ml-p104.webp', 'Peroni', 'A light Italian beer, suitable for many Italian dishes', 5),
@@ -121,8 +124,8 @@ INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`
 (68, 12, 'bucatini-amatriciana-18-1.jpg', 'Pasta all\'Amatriciana', 'Polenta cooked with mushrooms, often drizzled with mushroom sauce and cheese.', 15),
 (69, 12, 'BISTECCA-093022.jpg', 'Bistecca alla Fiorentina', 'A large T-bone steak from high-quality beef, usually grilled or seared, served with sauce and fresh greens', 50),
 (70, 12, 'spaghetti-alle-vongole-recipe-jpg-1676890130.jpg', 'Linguine alle Vongole', 'A popular pasta dish with clam sauce, garlic, chili, and olive oil', 30),
-(75, 9, 'cannoli-small-8-scaled.jpg', 'Cannoli', 'Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients', 4),
-(76, 9, 'gelato-1296x728-header.webp', 'Gelato', 'Description: An Italian ice cream similar to regular ice cream but with a softer texture and lower fat content', 4),
+(75, 9, 'cannoli-small-8-scaled.jpg', 'Cannoli', '<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n', 4),
+(76, 9, 'gelato-1296x728-header.webp', 'Gelato', '<p>Description:<strong> An Italian ice cream similar to regular ice cream but with a softer texture and lower fat content</strong></p>\r\n', 4),
 (77, 9, 'ac18aa15611572f79a25dfc41356ed0b.jpg', 'Affogatoo', 'Description: A cup of strong black espresso poured directly over a scoop of vanilla or cappuccino-flavored ice cream', 5),
 (90, 6, 'c95916519436ceac9184ae946aa4f1f520231221090252.jpg', 'Test', 'Test desc', 2000000),
 (91, 8, 'c95916519436ceac9184ae946aa4f1f520231221101809.jpg', 'test2', 'desc', 1234);
@@ -200,8 +203,6 @@ INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
 (121, 'aperol-spritz-index-64873f08af990.jpg', 48),
 (122, 'linguine-with-clams-3.jpg', 70),
 (123, '201305-r-florentine-beefsteak_0-2000-eea190cb4f0e4d68b0595f9042c1f3b8.jpg', 69),
-(124, 'Cannoli-2.webp', 75),
-(125, '58.jpg', 76),
 (126, 'Affogato_0-SQ.webp', 77),
 (127, 'k_Photo_Recipes_2020-07-How-to-make-affogato-at-home_Kitchn_HowTo_Affogato_0281.jpeg', 77),
 (128, '5e434363-f5c3-456e-b6ea-c1c88b-5013-3571-1526988505.jpg', 33),
@@ -210,7 +211,10 @@ INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
 (131, 'Screenshot from 2023-12-15 21-49-53.png', 78),
 (132, 'sdfsdf.png', 78),
 (157, '836a6d800e5f9defdbbc79565c841dec20231221090304.png', 90),
-(158, '47941587e0e2351c9de87c73cb0e44cd20231221090304.png', 90);
+(158, '47941587e0e2351c9de87c73cb0e44cd20231221090304.png', 90),
+(159, 'd41d8cd98f00b204e9800998ecf8427e20231227041023.', 76),
+(160, 'd41d8cd98f00b204e9800998ecf8427e20231227041800.', 75),
+(161, 'd41d8cd98f00b204e9800998ecf8427e20231227043136.', 49);
 
 -- --------------------------------------------------------
 
@@ -245,7 +249,9 @@ INSERT INTO `reservation` (`id`, `date`, `people`, `name`, `phone`, `email`, `st
 (20, '2023-12-19 10:30:00', 3, 'Nguyen Tien Dat', '099090', 'dat@gmail.com', 1),
 (33, '2023-12-15 09:30:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 2),
 (34, '2023-12-15 09:30:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 2),
-(35, '2023-12-21 10:30:00', 4, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 1);
+(35, '2023-12-21 10:30:00', 4, 'Nguyen Phuong Tan', '0392185869', 'tan@gmail.com', 1),
+(36, '2023-12-27 10:00:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tannguyen.10102004@gmail.com', 2),
+(43, '2023-12-27 09:00:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tannguyen.10102004@gmail.com', 2);
 
 --
 -- Indexes for dumped tables
@@ -295,7 +301,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -319,13 +325,13 @@ ALTER TABLE `product_comments`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
