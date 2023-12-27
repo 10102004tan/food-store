@@ -223,7 +223,7 @@
                             <img src="public/images/our-menu-01.jpg" alt="IMG-MENU">
 
                             <!-- Button2 -->
-                            <a href="./menu" class="btn2 flex-c-m txt5 ab-c-m size4">
+                            <a href="./menu.php" class="btn2 flex-c-m txt5 ab-c-m size4">
                                 Lunch
                             </a>
                         </div>
@@ -235,7 +235,7 @@
                             <img src="public/images/our-menu-05.jpg" alt="IMG-MENU">
 
                             <!-- Button2 -->
-                            <a href="./menu" class="btn2 flex-c-m txt5 ab-c-m size5">
+                            <a href="./menu.php" class="btn2 flex-c-m txt5 ab-c-m size5">
                                 Dinner
                             </a>
                         </div>
@@ -247,7 +247,7 @@
                             <img src="public/images/our-menu-13.jpg" alt="IMG-MENU">
 
                             <!-- Button2 -->
-                            <a href="./menu" class="btn2 flex-c-m txt5 ab-c-m size6">
+                            <a href="./menu.php" class="btn2 flex-c-m txt5 ab-c-m size6">
                                 Happy Hour
                             </a>
                         </div>
@@ -263,7 +263,7 @@
                             <img src="public/images/our-menu-08.jpg" alt="IMG-MENU">
 
                             <!-- Button2 -->
-                            <a href="./menu" class="btn2 flex-c-m txt5 ab-c-m size7">
+                            <a href="./menu.php" class="btn2 flex-c-m txt5 ab-c-m size7">
                                 Drink
                             </a>
                         </div>
@@ -275,7 +275,7 @@
                             <img src="public/images/our-menu-10.jpg" alt="IMG-MENU">
 
                             <!-- Button2 -->
-                            <a href="./menu" class="btn2 flex-c-m txt5 ab-c-m size8">
+                            <a href="./menu.php" class="btn2 flex-c-m txt5 ab-c-m size8">
                                 Starters
                             </a>
                         </div>
@@ -287,7 +287,7 @@
                             <img src="public/images/our-menu-16.jpg" alt="IMG-MENU">
 
                             <!-- Button2 -->
-                            <a href="./menu" class="btn2 flex-c-m txt5 ab-c-m size9">
+                            <a href="./menu.php" class="btn2 flex-c-m txt5 ab-c-m size9">
                                 Dessert
                             </a>
                         </div>
@@ -864,7 +864,7 @@
                 <!-- Block1 -->
                 <div class="blo1">
                     <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
-                        <a href="blog-detail"><img src="public/images/blog-01.jpg" alt="IMG-INTRO"></a>
+                        <a href="blog-detail.php"><img src="public/images/blog-01.jpg" alt="IMG-INTRO"></a>
 
                         <div class="time-blog">
                             21 Dec 2017
@@ -872,7 +872,7 @@
                     </div>
 
                     <div class="wrap-text-blo1 p-t-35">
-                        <a href="blog-detail">
+                        <a href="blog-detail.php">
                             <h4 class="txt5 color0-hov trans-0-4 m-b-13">
                                 Best Places for Wine
                             </h4>
@@ -882,7 +882,7 @@
                             Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
                         </p>
 
-                        <a href="blog-detail" class="txt4">
+                        <a href="blog-detail.php" class="txt4">
                             Continue Reading
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
@@ -894,7 +894,7 @@
                 <!-- Block1 -->
                 <div class="blo1">
                     <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
-                        <a href="blog-detail"><img src="public/images/blog-02.jpg" alt="IMG-INTRO"></a>
+                        <a href="blog-detail.php"><img src="public/images/blog-02.jpg" alt="IMG-INTRO"></a>
 
                         <div class="time-blog">
                             15 Dec 2017
@@ -902,7 +902,7 @@
                     </div>
 
                     <div class="wrap-text-blo1 p-t-35">
-                        <a href="blog-detail">
+                        <a href="blog-detail.php">
                             <h4 class="txt5 color0-hov trans-0-4 m-b-13">
                                 Eggs and Cheese
                             </h4>
@@ -912,7 +912,7 @@
                             Duis elementum, risus sit amet lobortis nunc justo condimentum ligula, vitae feugiat
                         </p>
 
-                        <a href="blog-detail" class="txt4">
+                        <a href="blog-detail.php" class="txt4">
                             Continue Reading
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
@@ -924,7 +924,7 @@
                 <!-- Block1 -->
                 <div class="blo1">
                     <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
-                        <a href="blog-detail"><img src="public/images/blog-03.jpg" alt="IMG-INTRO"></a>
+                        <a href="blog-detail.php"><img src="public/images/blog-03.jpg" alt="IMG-INTRO"></a>
 
                         <div class="time-blog">
                             12 Dec 2017
@@ -932,7 +932,7 @@
                     </div>
 
                     <div class="wrap-text-blo1 p-t-35">
-                        <a href="blog-detail">
+                        <a href="blog-detail.php">
                             <h4 class="txt5 color0-hov trans-0-4 m-b-13">
                                 Style the Wedding Party
                             </h4>
@@ -942,7 +942,7 @@
                             Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
                         </p>
 
-                        <a href="blog-detail" class="txt4">
+                        <a href="blog-detail.php" class="txt4">
                             Continue Reading
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>

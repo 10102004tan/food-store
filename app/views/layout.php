@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <title><?php if (!empty($title)){
-        echo $title;
-    } ?></title>
+    <title><?php if (!empty($title)) {
+                echo $title;
+            } ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -47,8 +47,7 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="index.php">
-                            <img src="public/images/icons/logo.png" alt="IMG-LOGO"
-                                data-logofixed="images/icons/logo2.png">
+                            <img src="public/images/icons/logo.png" alt="IMG-LOGO" data-logofixed="public/images/icons/logo2.png">
                         </a>
                     </div>
 
@@ -75,24 +74,20 @@
 
                     <!-- Social -->
                     <div class="social flex-w flex-l-m p-r-20">
-                    <?php if (isset($_SESSION['username'])) { ?>
-                        <a class="mr-2" href="#"
-                            class="mr-2 d-flex align-items-center justify-content-center"><?= $_SESSION['username'] ?></a>
-                        <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center"
-                            style="font-size: 20px"><ion-icon name="log-out-outline"></ion-icon></a>
-                        <?php }else{ ?>
-                            <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center"
-                            style="font-size: 18px; margin-right: 14px;">Login</a>
-                            <a href="register.php" class="mr-2 d-flex align-items-center justify-content-center"
-                            style="font-size: 18px">Register</a>
+                        <?php if (isset($_COOKIE['username'])) { ?>
+                            <a class="mr-2" href="#" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 16px"><?= $_COOKIE['username'] ?></a>
+                            <a href="logout.php" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 20px">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </a>
+                        <?php } else { ?>
+                            <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 16px; margin-right: 14px;">Login</a>
+                            <a href="register.php" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 16px">Register</a>
 
                         <?php } ?>
-                        <a href="shopping-cart.php"
-                            class="mr-2 d-flex align-items-center justify-content-center pos-relative"
-                            style="font-size: 20px">
+                        <a href="shopping-cart.php" class="mr-2 d-flex align-items-center justify-content-center pos-relative" style="font-size: 20px">
                             <ion-icon name="cart-outline"></ion-icon>
                             <span class="shopping-cart-amount">
-                            <?= (!empty($numberCart)) ? $numberCart : "0" ?>
+                                <?= isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : 0 ?>
                             </span>
                         </a>
                         <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
@@ -103,11 +98,80 @@
             </div>
         </div>
     </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar trans-0-4">
+        <!-- Button Hide sidebar -->
+        <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
+
+        <!-- - -->
+        <ul class="menu-sidebar p-t-95 p-b-70">
+            <li class="t-center m-b-13">
+                <a href="index.php" style="text-transform: uppercase" class="txt19">Home</a>
+            </li>
+            <li class="t-center m-b-13">
+                <a href="menu.php" style="text-transform: uppercase" class="txt19">Menu</a>
+            </li>
+            <li class="t-center m-b-13">
+                <a href="reservation.php" style="text-transform: uppercase" class="txt19">Reservation</a>
+            </li>
+            <li class="t-center m-b-13">
+                <a href="blog.php" style="text-transform: uppercase" class="txt19">Blog</a>
+            </li>
+        </ul>
+
+        <!-- - -->
+        <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
+            <!-- - -->
+            <h4 class="txt20 m-b-33">
+                Gallery
+            </h4>
+
+            <!-- Gallery -->
+            <div class="wrap-gallery-sidebar flex-w">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
+                </a>
+
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
+                    <img src="public/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
+                </a>
+            </div>
+        </div>
+    </aside>
+
     <!-- content -->
     <?php if (!empty($slot)) {
         echo $slot;
     } ?>
-
 
     <!-- end content -->
 
@@ -210,63 +274,51 @@
 
                     <!-- Gallery footer -->
                     <div class="wrap-gallery-footer flex-w">
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-01.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-02.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-03.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-04.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-04.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-04.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-05.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-06.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-07.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-08.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-08.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-09.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-10.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-11.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-12.jpg"
-                            data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-12.jpg" alt="GALLERY">
                         </a>
                     </div>
@@ -285,8 +337,7 @@
                     </div>
 
                     <div class="txt17 p-r-20 p-t-5 p-b-5">
-                        Copyright &copy; 2018 All rights reserved | This template is made with <i
-                            class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        Copyright &copy; 2018 All rights reserved | This template is made with <i class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     </div>
                 </div>
             </div>
@@ -313,8 +364,7 @@
             <div class="wrap-video-mo-01">
                 <div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
                 <div class="video-mo-01">
-                    <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0"
-                        allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -349,53 +399,6 @@
     <script type="text/javascript" src="public/vendor/lightbox2/js/lightbox.min.js"></script>
     <!--===============================================================================================-->
     <script src="public/js/main.js"></script>
-
-
-    <!-- <script type="text/javascript">
-
-        const fetchData = (apiUrl, method = 'GET', data = null) => {
-            let requestOptions = {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: data ? JSON.stringify(data) : null
-            };
-            if (method === 'POST') {
-                requestOptions = {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    },
-                    mode: 'cors',
-                    body: data
-                };
-            }
-
-            return fetch(apiUrl, requestOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
-                    throw error;
-                });
-        };
-
-        const menuLinks = document.querySelectorAll(".item-ourmenu a");
-        console.log(menuLinks);
-
-        fetchData("./get-menu", "GET").then(datas => {
-            datas.forEach((data, index) => {
-                menuLinks[index].href = "./detail-menu?id=" + data.menuId;
-                menuLinks[index].textContent = data.menuName;
-            });
-        });
-
-    </script> -->
 
 </body>
 
