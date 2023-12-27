@@ -23,9 +23,7 @@
                                     <?= $food['name'] ?>
                                 </a>
 
-                                <span class="txt23">
-                                    <?= $food['description'] ?>
-                                </span>
+                               
 
                                 <span class="txt22 m-t-20">
                                     <?= "$" . $food['price'] ?>
