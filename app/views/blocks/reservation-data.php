@@ -100,6 +100,7 @@ listBtnStatus.forEach(btn => {
                 status: btn.value,
             },
             success: function(data) {
+                console.log(data);
                 alert(data);
                 location.reload();
             },

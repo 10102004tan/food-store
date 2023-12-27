@@ -8,14 +8,11 @@ if (isset($_POST['check-username'])){
     $username = $_POST['username'];
     $member_data = $member->getMemberByUsername($username);
     $email = $member_data['email'];
-    if (($member->checkUsername($username)) > 0) {
+    if (($member->checkUsername($username)) > 0){
         $code = rand(999999, 111111);
         if ($member->insertCodeToMember($code,$username)){
-            $subject = "Password Reset Code";
-            $message = "Your password reset code is $code";
-            $sender = "From: tannguyen.10102004@gmail.com";
             if (sendCodeMail($email,$username,$code)){
-                $info = "We've sent a passwrod reset otp to your email - $email";
+                $info = "We've sent a passwrod reset otp to your email";
                 $_SESSION['info'] = $info;
                 $_SESSION['email'] = $email;
                 $_SESSION['username'] = $username;
