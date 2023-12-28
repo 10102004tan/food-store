@@ -31,6 +31,46 @@ class Member extends Database
         }
 
         return $status; // 0 => admin , 1 => user
+
+    }
+
+    public function checkUsername($username){
+        $sql = parent::$connection->prepare("SELECT * FROM members where username = ?");
+        $sql->bind_param("s", $username);
+        return count(parent::select($sql));
+    }
+
+    public function getMemberByUsername($username) {
+        $sql = parent::$connection->prepare("SELECT * FROM members where username = ?");
+        $sql->bind_param("s", $username);
+        return parent::select($sql)[0];
+    }
+
+    public function insertCodeToMember($code,$username) {
+        $sql = parent::$connection->prepare("UPDATE `members` SET `code`= ? WHERE username = ?");
+        $sql->bind_param("is",$code,$username);
+        return $sql->execute();
+    }
+
+    public function updatePassword($username,$password)
+    {
+        $sql = parent::$connection->prepare("UPDATE `members` SET `password`= ? WHERE username = ?");
+        $sql->bind_param("ss",$password,$username);
+        return $sql->execute();
+    }
+
+    public function checkEmail($email,$username){
+        $sql = parent::$connection->prepare("SELECT email,username from members");
+        $emails = parent::select($sql);
+        foreach ($emails as $item) {
+            if ($item['email'] == $email || $item['username'] == $username){
+                return false;
+            }
+
+        }
+
+        return true;
+        
     }
 
     public function saveToken($userId, $token)
@@ -47,3 +87,4 @@ class Member extends Database
         return parent::select($sql)[0];
     }
 }
+

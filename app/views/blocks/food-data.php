@@ -51,8 +51,8 @@ if (isset($_GET['page'])) {
             <input type="text" class="form-control" id="category-name-add" name="name">
         </div>
         <div class="mb-3">
-            <label for="parent-id-add-b" class="form-label">Food Description</label>
-            <input type="text" class="form-control" id="parent-id-add-b" name="description">
+            <label for="" class="form-label">Food Description</label>
+            <textarea id="product-content-add" class="form-control"  name="description"></textarea>
         </div>
         <div class="mb-3">
             <label for="parent-id-add" class="form-label">Food Price</label>
@@ -116,8 +116,8 @@ if (isset($_GET['page'])) {
                     <input type="text" class="form-control" id="food-name-edit" name="name">
                 </div>
                 <div class="mb-3">
-                    <label for="food-description-edit" class="form-label">Food Description</label>
-                    <input type="text" class="form-control" id="food-description-edit" name="description">
+                    <label for="" class="form-label">Food Description</label>
+                    <textarea id="product-content-edit" class="form-control food-description-edit"  name="description"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="food-price-edit" class="form-label">Food Price</label>
@@ -199,7 +199,9 @@ if (isset($_GET['page'])) {
                 <td>
                     <?= $food['name'] ?>
                 </td>
-                <td>
+
+                <td class="t-desc">
+
                     <?= $food['description'] ?>
                 </td>
                 <td>
@@ -258,6 +260,13 @@ if (isset($_GET['page'])) {
 </div>
 
 <!-- Script-->
+<script>
+    CKEDITOR.replace('product-content-add');
+    CKEDITOR.replace('product-content-edit');
+</script>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 const btnEditCategory = document.querySelectorAll(".btn-edit-category");
@@ -275,7 +284,9 @@ const btnChooseMenuImage = document.querySelector(".btn-choose-image-file");
 const boxImage = document.querySelector(".grid-box-image");
 const inputEditFoodName = document.querySelector("#food-name-edit");
 const inputEditFoodPrice = document.querySelector("#food-price-edit");
-const inputEditFoodDescription = document.querySelector("#food-description-edit");
+
+const inputEditFoodDescription = document.querySelector(".food-description-edit");
+
 const boxDisplayImage = document.querySelector(".show-image img");
 const inputEditFoodId = document.querySelector("#food-id-edit");
 const labelEditMenuIds = document.querySelectorAll(".label-menu-id-edit");
@@ -348,11 +359,11 @@ btnEditCategory.forEach((btn) => {
                 id: btn.value,
             },
             success: function(data) {
-                console.log(data);
 
                 inputEditFoodId.value = data.id;
                 inputEditFoodName.value = data.name;
-                inputEditFoodDescription.value = data.description;
+                CKEDITOR.instances['product-content-edit'].setData(data.description);
+
                 inputEditFoodPrice.value = data.price;
                 inputFoodImageEdit.value = data.image;
                 inputMenuIdEdit.forEach((input) => {

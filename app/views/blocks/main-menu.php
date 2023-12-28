@@ -21,9 +21,7 @@
                                     </div>
                                 </div>
 
-                                <span class="info-item-main txt23">
-                                    <?= $food_data['description'] ?>
-                                </span>
+                                
                             </div>
                         <?php endforeach ?>
                     </div>

@@ -81,7 +81,7 @@ if (isset($_COOKIE['token'])) {
                                     </label>
                                 </div>
                                 <div class="w-50 text-md-right">
-                                    <a href="#" style="color: #fff">Forgot Password</a>
+                                    <a href="forget-pw.php" style="color: #fff">Forgot Password</a>
                                 </div>
                             </div>
                         </form>
