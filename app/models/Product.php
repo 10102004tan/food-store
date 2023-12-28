@@ -8,6 +8,13 @@ class Product extends Database
         return parent::select($sql)[0]['total'];
     }
 
+    public function getPriceProduct($productId)
+    {
+        $sql = parent::$connection->prepare("SELECT price FROM `products` WHERE `id` = ?");
+        $sql->bind_param('i', $productId);
+        return parent::select($sql);
+    }
+
     public function getAllProductLimit($page, $perPage)
     {
         $sql = parent::$connection->prepare("SELECT products.*, menus.name as 'menu_name' FROM `products` inner join menus on products.menu_id = menus.id  GROUP BY products.id DESC LIMIT ?,?;");
