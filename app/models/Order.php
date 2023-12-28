@@ -77,4 +77,18 @@ class Order extends Database
 
         return $sql->execute();
     }
+
+    public function updatePaymentStatusToSuccess($orderId)
+    {
+        $sql = parent::$connection->prepare("UPDATE `orders` SET `payment_status`= 1 WHERE id = ?");
+        $sql->bind_param("s", $orderId);
+        return $sql->execute();
+    }
+
+    public function getOrderByUserId($userId)
+    {
+        $sql = parent::$connection->prepare("SELECT * FROM `orders` WHERE `user_id` = ?");
+        $sql->bind_param("i", $userId);
+        return parent::select($sql);
+    }
 }

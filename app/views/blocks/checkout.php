@@ -19,7 +19,7 @@
                             Contact Information
                         </h3>
                         <div class="box-field">
-                            <input placeholder="Email" type="email" name="email" class="field-contact">
+                            <input placeholder="Email" type="email" name="email" class="field-contact" required>
                         </div>
                     </div>
                     <div class="box-contact">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn-checkout">
+                <button type="button" class="btn-checkout">
                     Go to payment page
                 </button>
             </form>
@@ -68,3 +68,22 @@
         </div>
     </div>
 </section>
+
+<script>
+    const inputEmail = document.querySelector("input[name='email']");
+    const inputFirstname = document.querySelector("input[name='firstname']");
+    const inputLastname = document.querySelector("input[name='lastname']");
+    const inputAddress = document.querySelector("input[name='address']");
+    const inputPhone = document.querySelector("input[name='phone']");
+
+    const btnCheckout = document.querySelector(".btn-checkout");
+    const formCheckout = document.querySelector(".box-add-infor");
+    btnCheckout.addEventListener("click", () => {
+        if (inputFirstname.value != "" && inputLastname.value != "" && inputAddress.value != "" && inputPhone
+            .value != "" && inputEmail != "" && inputEmail.value.includes("@")) {
+            formCheckout.submit();
+        } else {
+            alert("Please fill all fields !!!");
+        }
+    });
+</script>
