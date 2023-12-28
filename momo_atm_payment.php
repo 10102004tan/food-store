@@ -12,7 +12,7 @@ $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua MoMo";
 $amount = "10000";
 $orderId = time() . "";
-$redirectUrl = "http://localhost/food-store/checkout.php";
+$redirectUrl = "http://localhost/food-store/store_payment.php";
 $ipnUrl = "http://localhost/food-store/checkout.php";
 $extraData = "";
 

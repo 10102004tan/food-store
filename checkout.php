@@ -43,6 +43,8 @@ if (count($products) > 0) {
             }
         }
     }
+} else {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 

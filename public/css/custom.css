@@ -514,3 +514,25 @@ table {
     margin-top: 12px;
     font-weight: 500;
 }
+
+.history-order-btn{
+    background-color: transparent;
+    color: #039CD9;
+    padding: 12px;;
+}
+
+.box-history{
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    min-width: 1240px ;
+}
+
+.btn-buy-again,
+.btn-shop{
+    padding: 12px;
+    width: 100%;
+    color: #fff;
+    border-radius: 10px;
+    background-color: #ec1d25;
+}

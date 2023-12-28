@@ -37,7 +37,9 @@
                         <?= $item['price'] ?>
                     </td>
                     <td>
-                        <a class="h3" href=""></ion-icon></a>
+                        <a class="h3" href="./delete-shopping-cart.php?id=<?= $item["id"] ?>">
+                            <ion-icon name="close-circle-outline"></ion-icon>
+                        </a>
                     </td>
                 </tr>
                 <?php endforeach ?>
