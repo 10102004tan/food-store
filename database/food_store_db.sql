@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th12 29, 2023 lúc 06:54 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.1.17
+-- Host: localhost
+-- Generation Time: Dec 29, 2023 at 10:21 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `food_store_db`
+-- Database: `food_store_db`
 --
+CREATE DATABASE IF NOT EXISTS `food_store_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `food_store_db`;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE `members` (
@@ -34,25 +36,27 @@ CREATE TABLE `members` (
   `code` varchar(100) DEFAULT NULL,
   `role` int(11) NOT NULL DEFAULT 1,
   `email` varchar(255) NOT NULL,
-  `token` varchar(500) DEFAULT NULL
+  `token` varchar(500) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `members`
+-- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `username`, `password`, `code`, `role`, `email`, `token`) VALUES
-(15, 'admin', '$2y$10$PvKbkajQ8yIMujtd4vh/yer0FmkrtYtFj/VzQSZl4PKfp.WuFmPKO', '0', 0, 'tan@gmail.com', '884ce14f1d147b3bcba3f0ab2eb7f0a2'),
-(16, 'tan', '$2y$10$u8svlLWjtMn0sm.7oXn9l.xN6P8OD6EohSA9sy7Fb4rg326H5uqmi', '0', 1, 'tannguyen.10102004@gmail.com', ''),
-(17, 'tannguyen123', '$2y$10$K3R5CGfnN.0/DHq0ksbeXOQ0BdCZvoD5EVuc.ay3uNLbxt/ETdU/m', NULL, 1, 'tannguyen.10102004@gmail.com', ''),
-(22, 'tannguyen', '$2y$10$JIH1sSOP7.UsaP.nY4BYgOHSrzQh1.FuimNe4mlCU/XYYYwIUnS/O', '776921', 1, 'tannguyen.10ddd102004@gmail.com', ''),
-(23, 'ser', '$2y$10$weEeOtNshiDenXdK/lf7MetDTl87hCZcFAUlWtXoLiT7rdMzUgkPy', NULL, 1, 'ser@ser.ser', 'cc01b053afef7c678e1d1463fd235e77'),
-(24, 'NguyenTienDat', '$2y$10$Xac1HIL5Y.2TrufYXE1qoevb5s/LvtPG0gqwcoo2AN7dpdxOsjwvy', NULL, 1, 'dat@gmail.com', '8dcdb13022f9fbb6ed0eb22804a99389');
+INSERT INTO `members` (`id`, `username`, `password`, `code`, `role`, `email`, `token`, `status`) VALUES
+(15, 'admin', '$2y$10$PvKbkajQ8yIMujtd4vh/yer0FmkrtYtFj/VzQSZl4PKfp.WuFmPKO', '0', 0, 'tan@gmail.com', '884ce14f1d147b3bcba3f0ab2eb7f0a2', 1),
+(23, 'ser', '$2y$10$weEeOtNshiDenXdK/lf7MetDTl87hCZcFAUlWtXoLiT7rdMzUgkPy', NULL, 1, 'ser@ser.ser', 'cc01b053afef7c678e1d1463fd235e77', 0),
+(24, 'NguyenTienDat', '$2y$10$Xac1HIL5Y.2TrufYXE1qoevb5s/LvtPG0gqwcoo2AN7dpdxOsjwvy', NULL, 1, 'dat@gmail.com', '8dcdb13022f9fbb6ed0eb22804a99389', 0),
+(28, 'tan', '$2y$10$ueb6l3aoM3WHMf0Sledyeut9gDOrX6sxWiGCH7SaXriwGX0v9dFP.', '0', 1, 'tannguyen.10102004@gmail.com', NULL, 1),
+(33, 'tandz1234', '$2y$10$np.j1anaG9qJIBbD7mqL3.79QYw9ZRx3WofeXAyciL5/uJgnuQPAu', '0', 1, 'tan123oskse@gmail.com', NULL, 1),
+(34, 'tandz123', '$2y$10$zKHFYGqSbAyGCBCDAKpn/.bRmHiFo92q2KxqOc6gZwjFlYHZNuvEG', '0', 1, 'taolathogohoanganh@gmail.com', '0dba8456e9a36ff4ff4f697f40dcb864', 1),
+(35, 'tan1', '$2y$10$LFXBP0zxsnZaYCwlsjHp9OLEjhSamBFHJjY/pOr/RkQysDoNjd5nK', '0', 1, 'dat61222@gmail.com', 'c5dd85089bd2ecd9e91ac74a4e1a934d', 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `menus`
+-- Table structure for table `menus`
 --
 
 CREATE TABLE `menus` (
@@ -62,7 +66,7 @@ CREATE TABLE `menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `description`) VALUES
@@ -76,7 +80,7 @@ INSERT INTO `menus` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `momo_payment`
+-- Table structure for table `momo_payment`
 --
 
 CREATE TABLE `momo_payment` (
@@ -97,7 +101,7 @@ CREATE TABLE `momo_payment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `momo_payment`
+-- Dumping data for table `momo_payment`
 --
 
 INSERT INTO `momo_payment` (`partner_code`, `order_id`, `request_id`, `amount`, `order_info`, `order_type`, `trans_id`, `result_code`, `message`, `pay_type`, `response_time`, `extra_data`, `signature`, `payment_option`) VALUES
@@ -115,7 +119,7 @@ INSERT INTO `momo_payment` (`partner_code`, `order_id`, `request_id`, `amount`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -131,7 +135,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `fullname`, `email`, `phone`, `address`, `payment_status`, `created_at`, `delivery_status`) VALUES
@@ -146,7 +150,7 @@ INSERT INTO `orders` (`id`, `user_id`, `fullname`, `email`, `phone`, `address`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_details`
+-- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -157,7 +161,7 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `order_details`
+-- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`) VALUES
@@ -184,7 +188,7 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -197,7 +201,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`) VALUES
@@ -239,7 +243,7 @@ INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product_comments`
+-- Table structure for table `product_comments`
 --
 
 CREATE TABLE `product_comments` (
@@ -250,7 +254,7 @@ CREATE TABLE `product_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `product_comments`
+-- Dumping data for table `product_comments`
 --
 
 INSERT INTO `product_comments` (`id`, `product_id`, `comment`, `username`) VALUES
@@ -266,7 +270,7 @@ INSERT INTO `product_comments` (`id`, `product_id`, `comment`, `username`) VALUE
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product_images`
+-- Table structure for table `product_images`
 --
 
 CREATE TABLE `product_images` (
@@ -276,7 +280,7 @@ CREATE TABLE `product_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `product_images`
+-- Dumping data for table `product_images`
 --
 
 INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
@@ -321,7 +325,7 @@ INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `reservation`
+-- Table structure for table `reservation`
 --
 
 CREATE TABLE `reservation` (
@@ -335,7 +339,7 @@ CREATE TABLE `reservation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `reservation`
+-- Dumping data for table `reservation`
 --
 
 INSERT INTO `reservation` (`id`, `date`, `people`, `name`, `phone`, `email`, `status`) VALUES
@@ -356,105 +360,105 @@ INSERT INTO `reservation` (`id`, `date`, `people`, `name`, `phone`, `email`, `st
 (43, '2023-12-27 09:00:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tannguyen.10102004@gmail.com', 2);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `members`
+-- Indexes for table `members`
 --
 ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `menus`
+-- Indexes for table `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `momo_payment`
+-- Indexes for table `momo_payment`
 --
 ALTER TABLE `momo_payment`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- Chỉ mục cho bảng `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `order_details`
+-- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `product_comments`
+-- Indexes for table `product_comments`
 --
 ALTER TABLE `product_comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `product_images`
+-- Indexes for table `product_images`
 --
 ALTER TABLE `product_images`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `reservation`
+-- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `members`
+-- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT cho bảng `menus`
+-- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT cho bảng `order_details`
+-- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
--- AUTO_INCREMENT cho bảng `product_comments`
+-- AUTO_INCREMENT for table `product_comments`
 --
 ALTER TABLE `product_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `product_images`
+-- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
--- AUTO_INCREMENT cho bảng `reservation`
+-- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
