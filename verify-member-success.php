@@ -25,7 +25,7 @@ if($_SESSION['info'] == false){
                 <?php
             }
             ?>
-               <a href="login.php" class="button">Login now</a>
+            <a href="login.php" class="button">Login now</a>
             </div>
         </div>
     </div>

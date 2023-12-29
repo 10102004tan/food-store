@@ -194,9 +194,9 @@ if (isset($_POST['login'])) {
 
 function sendCodeMail($email, $username, $subject, $content)
 {
-    require "public/PHPMailer/src/PHPMailer.php";
-    require "public/PHPMailer/src/SMTP.php";
-    require 'public/PHPMailer/src/Exception.php';
+    require "public/phpmailer/src/PHPMailer.php";
+    require "public/phpmailer/src/SMTP.php";
+    require 'public/phpmailer/src/Exception.php';
     $mail = new PHPMailer\PHPMailer\PHPMailer(true); //true:enables exceptions
     try {
         $mail->SMTPDebug = 0;
