@@ -14,6 +14,12 @@ class Order extends Database
         return $sql->execute();
     }
 
+    public function cancelOrder($orderId) {
+        $sql = parent::$connection->prepare("UPDATE `orders` SET `delivery_status` = 3 WHERE id = ?");
+        $sql->bind_param("s", $orderId);
+        return $sql->execute();
+    }
+
     public function getTotalOrder()
     {
         $sql = parent::$connection->prepare("SELECT count(*) as 'total' FROM `orders`");

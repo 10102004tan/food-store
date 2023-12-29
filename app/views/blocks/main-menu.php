@@ -13,20 +13,18 @@
                                     <a href="details.php?id=<?= $food_data['id'] ?>" class="name-item-mainmenu txt21">
                                         <?= $food_data['name'] ?>
                                     </a>
-
                                     <div class="line-item-mainmenu bg3-pattern"></div>
-
                                     <div class="price-item-mainmenu txt22">
                                         <?= "$" . $food_data['price'] ?>
                                     </div>
                                 </div>
-
-                                
+                                <span class="info-item-mainmenu txt23">
+                                        <?= $food_data['description'] ?>
+                                </span>
                             </div>
                         <?php endforeach ?>
                     </div>
                 </div>
-
             <?php endforeach ?>
         </div>
 </section>

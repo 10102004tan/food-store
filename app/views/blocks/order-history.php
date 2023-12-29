@@ -1,5 +1,17 @@
 <div class="page-wrapper flex-col justify-content-start p-3" style="overflow-y: scroll; overflow-x: hidden;">
+    <?php if (isset($_SESSION['notify-success'])) : ?>
+    <div class="alert alert-success mt-3">
+        <?php echo $_SESSION['notify-success'];
+                unset($_SESSION['notify-success']); ?>
+    </div>
+    <?php endif ?>
 
+    <?php if (isset($_SESSION['notify-fail'])) : ?>
+    <div class="alert alert-danger mt-3">
+        <?= $_SESSION['notify-fail'];
+                unset($_SESSION['notify-fail']); ?>
+    </div>
+    <?php endif ?>
     <div class="box-history">
         <button class="btn-order-back btn-pay-back mb-3">
             <ion-icon name="chevron-back-outline"></ion-icon>
@@ -69,6 +81,8 @@
                                             echo "<button class='btn btn-warning'>in transit</button>";
                                         }else if ($order["delivery_status"] == 0 ) {
                                             echo "<button class='btn btn-warning'>preparing</button>";
+                                        }else if ($order["delivery_status"] == 3 ) {
+                                            echo "<button class='btn btn-danger'>cancelled</button>";
                                         }else {
                                             echo "<button class='btn btn-success'>delivered</button>";
                                         }
@@ -77,14 +91,21 @@
                         </div>
                         <div class="btn-action d-flex align-items-center justify-content-center flex-col"
                             style="gap: 10px">
-                            <button class="btn-buy-again">Buy again</button>
+                            <button class="btn btn-danger">Buy again</button>
+                            <?php
+                                if ($order["delivery_status"] == 0) {
+                                    echo " <form action='cancel-order.php' method='POST'>
+                                    <input type='text' hidden name='id' value=$order[id]>
+                                    <button class='btn btn-danger' type='submit'>Cancel Order</button>
+                                </form>";
+                                }
+                            ?>
                         </div>
                     </div>
                     <?php
                                 }
                             }
                             ?>
-
                 </div>
             </div>
             <?php

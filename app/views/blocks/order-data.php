@@ -63,6 +63,10 @@ if (isset($_GET['page'])) {
                         delivered                        
                         <input type="radio" class="form-control" id="order-delivery-edit-2" name="delivery-status" hidden value="2">
                     </label>
+                    <label for="order-delivery-edit-3" class="form-label btn btn-success mb-0 label-delivery">
+                        cancelled                      
+                        <input type="radio" class="form-control" id="order-delivery-edit-3" name="delivery-status" hidden value="3">
+                    </label>
                 </div>
             </div>
             <div class="box-product col" style="margin: 12px;">
@@ -155,6 +159,8 @@ if (isset($_GET['page'])) {
                     echo "<button class='btn btn-warning'>in transit</button>";
                 }else if ($order["delivery_status"] == 0 ) {
                     echo "<button class='btn btn-warning'>preparing</button>";
+                }else if ($order["delivery_status"] == 3 ) {
+                    echo "<button class='btn btn-danger'>cancelled</button>";
                 }else {
                     echo "<button class='btn btn-success'>delivered</button>";
                 }
@@ -265,7 +271,7 @@ labelPayments.forEach((label) => {
 btnDeleteFood.forEach((btn) => {
     btn.addEventListener("click", () => {
         const form = btn.parentElement;
-        if (confirm("Are you sure to delete it ?")) {
+        if (confirm("Xác nhận xóa ?")) {
             form.submit();
         }
     })
@@ -281,7 +287,6 @@ btnEditOrders.forEach((btn) => {
             url: "./get-order-by-id.php?id=" + id,
             type: "GET",
             success: function(data) {
-                console.log(data);
                 inputOrderId.value = data.id;
                 inputOrderCustomerName.value = data.fullname;
                 inputOrderEmail.value = data.email;
