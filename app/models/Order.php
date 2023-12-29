@@ -8,6 +8,12 @@ class Order extends Database
         return parent::select($sql);
     }
 
+    public function update($orderId, $fullname, $phone, $email, $paymentStatus, $deliveryStatus, $address) {
+        $sql = parent::$connection->prepare("UPDATE `orders` SET `fullname`= ?, `phone`= ?, `email`= ?, `payment_status`= ?, `delivery_status`= ?, `address`= ? WHERE id = ?");
+        $sql->bind_param("sssiiss",$fullname, $phone, $email, $paymentStatus, $deliveryStatus, $address, $orderId);
+        return $sql->execute();
+    }
+
     public function getTotalOrder()
     {
         $sql = parent::$connection->prepare("SELECT count(*) as 'total' FROM `orders`");

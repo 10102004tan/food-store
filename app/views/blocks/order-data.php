@@ -8,11 +8,79 @@ if (isset($_GET['page'])) {
 
 </div>
 
+<div class="form-edit"">
+    <div class="btn-close-form">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
+            viewBox="0 0 16 16">
+            <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+        </svg>
+    </div>
+
+    <h3 class="text-center mt-3 mb-3">Edit data</h3>
+    <form action="update.php" method="post" enctype="multipart/form-data">
+        <div class="box-image mb-3 row">
+            <div class="col" style="min-width: 600px;">
+                <input type="text" class="form-control" id="order-id-edit" name="id" hidden>
+                <div class="mb-3">
+                    <label for="order-name-edit" class="form-label">Customer name</label>
+                    <input type="text" class="form-control" id="order-name-edit" name="fullname">
+                </div>
+                <div class="mb-3">
+                    <label for="order-email-edit" class="form-label">Email</label>
+                    <input id="order-email-edit" class="form-control" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="order-phone-edit" class="form-label">Phone</label>
+                    <input type="number" class="form-control" id="order-phone-edit" name="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="order-address-edit" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="order-address-edit" name="address">
+                </div>
+                <div class="mb-3 d-flex align-items-center" style="gap: 10px">
+                    Payment status
+                    <label for="order-payment-edit-2" class="form-label btn btn-success mb-0 label-payment">
+                        unpaid
+                        <input type="radio" class="form-control" id="order-payment-edit-2" name="payment-status" hidden value="0">
+                    </label>
+                    <label for="order-payment-edit-1" class="form-label btn btn-success mb-0 label-payment">
+                        paid
+                        <input type="radio" class="form-control" id="order-payment-edit-1" name="payment-status" hidden value="1">
+                    </label>
+                </div>
+                <div class="mb-3 d-flex align-items-center" style="gap: 10px">
+                    Delivery status
+                    <label for="order-delivery-edit-3" class="form-label btn btn-success mb-0 label-delivery">
+                        preparing
+                        <input type="radio" class="form-control" id="order-delivery-edit-3" name="delivery-status" hidden value="0">
+                    </label>
+                    <label for="order-delivery-edit-1" class="form-label btn btn-success mb-0 label-delivery">
+                        in transit
+                        <input type="radio" class="form-control" id="order-delivery-edit-1" name="delivery-status" hidden value="1">
+                    </label>
+                    <label for="order-delivery-edit-2" class="form-label btn btn-success mb-0 label-delivery">
+                        delivered                        
+                        <input type="radio" class="form-control" id="order-delivery-edit-2" name="delivery-status" hidden value="2">
+                    </label>
+                </div>
+            </div>
+            <div class="box-product col" style="margin: 12px;">
+                <div class="products" style="height: 400px; overflow-y: scroll">
+                
+                </div>
+                <span class="total-pay">Total: 0$</span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+</div>
+
 
 
 
 <div class="container">
-    <h1 class="text-center mt-3 mb-3">Food Data</h1>
+    <h1 class="text-center mt-3 mb-3">Order Data</h1>
     <div class="group-btn d-flex align-items-center justify-content-between">
         <div class="group-btn d-flex align-items-center justify-content-between">
             <form class="input-group d-flex align-items-center justify-content-center" style="max-width: 320px"
@@ -24,6 +92,7 @@ if (isset($_GET['page'])) {
             </form>
         </div>
     </div>
+
     <?php if (isset($_SESSION['notify-success'])) : ?>
     <div class="alert alert-success mt-3">
         <?php echo $_SESSION['notify-success'];
@@ -60,28 +129,52 @@ if (isset($_GET['page'])) {
                     <?= $order['id'] ?>
                 </th>
                 <td>
-                    <?= $food['fullname'] ?>
+                    <?= $order['fullname'] ?>
                 </td>
-                <td class="t-desc">
-                    <?= $food['description'] ?>
-                </td>
-                <td>
-                    <?= $food['price'] ?>
+                <td class="">
+                    <?= $order['email'] ?>
                 </td>
                 <td>
-                    <?= $food['menu_name'] ?>
+                    <?= $order['phone'] ?>
+                </td>
+                <td>
+                    <?= $order['address'] ?>
+                </td>
+                <td>
+                <?php
+                    if ($order["payment_status"] == 1) {
+                        echo "<button class='btn btn-success'>paid</button>";
+                    }else {
+                        echo "<button class='btn btn-warning'>unpaid</button>";
+                    }
+                ?>
+                </td>
+                <td>
+                <?php
+                if ($order["delivery_status"] == 1) {
+                    echo "<button class='btn btn-warning'>in transit</button>";
+                }else if ($order["delivery_status"] == 0 ) {
+                    echo "<button class='btn btn-warning'>preparing</button>";
+                }else {
+                    echo "<button class='btn btn-success'>delivered</button>";
+                }
+                ?>
+                </td>
+                <td>
+                <?php
+                    $timestamp = strtotime($order["created_at"]);
+                    $formattedDate = date("F j, Y  H:i:s", $timestamp);
+                    echo $formattedDate;
+                    ?>
                 </td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center w-fit">
-                        <form onsubmit="return confirm('Xác nhận xóa')" action="destroy.php" method="post" class="me-2">
-                            <button class="btn btn-danger btn-delete-food" name="id" value="<?= $food['id'] ?>"
+                        <form action="destroy.php" method="post" class="me-2">
+                            <button class="btn btn-danger btn-delete-food" name="id" value="<?= $order['id'] ?>"
                                 type="submit">Delete</button>
                         </form>
                         <button class="btn btn-primary btn-edit-category me-2" type="button"
-                            value="<?= $food['id'] ?>">Edit</button>
-                        <button class="btn btn-warning btn-edit-image-food" data-edit="<?= $food['id'] ?>">
-                            Image
-                        </button>
+                            data-edit="<?= $order['id'] ?>">Edit</button>
                     </div>
                 </td>
             </tr>
@@ -130,51 +223,44 @@ CKEDITOR.replace('product-content-edit');
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
-const btnEditCategory = document.querySelectorAll(".btn-edit-category");
+const btnEditOrders = document.querySelectorAll(".btn-edit-category");
 const formData = document.querySelector(".form-edit");
-const formAdd = document.querySelector(".form-add");
 const overlay = document.querySelector(".overlay");
-const btnAdd = document.querySelector(".btn-add-category");
 const btnCloseForm = document.querySelectorAll(".btn-close-form");
-const inputMenuId = document.querySelector("#category-id");
-const inputMenuName = document.querySelector("#category-name");
-const inputMenuDescription = document.querySelector("#parent-id");
-const btnChooseMenu = document.querySelectorAll(".btn-choose-menu");
-const inputFoodImage = document.querySelector("input[name='food-image']");
-const btnChooseMenuImage = document.querySelector(".btn-choose-image-file");
-const boxImage = document.querySelector(".grid-box-image");
-const inputEditFoodName = document.querySelector("#food-name-edit");
-const inputEditFoodPrice = document.querySelector("#food-price-edit");
-
-const inputEditFoodDescription = document.querySelector(".food-description-edit");
-
-const boxDisplayImage = document.querySelector(".show-image img");
-const inputEditFoodId = document.querySelector("#food-id-edit");
-const labelEditMenuIds = document.querySelectorAll(".label-menu-id-edit");
 const btnDeleteFood = document.querySelectorAll(".btn-delete-food");
-const inputAddMoreFoodImage = document.querySelector('#add-more-food-images');
-const inputFoodImageEdit = document.querySelector("#input-food-image");
-const inputMenuIdEdit = document.querySelectorAll(".input-menu-id-edit");
-const formEditFoodImage = document.querySelector(".form-edit-food-image");
-const btnEditFoodImage = document.querySelectorAll(".btn-edit-image-food");
-const inputIdEditFoodImage = document.querySelector("#input-food-id-edit-image");
-const labelInputEditMainImageFood = document.querySelector("label[for='input-edit-main-image-food']");
-const inputEditMainImageFood = document.querySelector("#input-edit-main-image-food");
+const inputOrderId = document.querySelector("#order-id-edit");
+const inputOrderCustomerName = document.querySelector("#order-name-edit");
+const inputOrderEmail = document.querySelector("#order-email-edit");
+const inputOrderPhone = document.querySelector("#order-phone-edit");
+const inputOrderAddress = document.querySelector("#order-address-edit");
+const boxProduct = document.querySelector(".products");
+const totalPay = document.querySelector(".total-pay");
 
-inputEditMainImageFood.addEventListener("input", (e) => {
-    labelInputEditMainImageFood.textContent = e.target.files[0].name;
-})
+const labelDeliveries = document.querySelectorAll("label.label-delivery"); 
+const labelPayments = document.querySelectorAll("label.label-payment"); 
 
-btnEditFoodImage.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const idEdit = btn.getAttribute("data-edit");
-        inputIdEditFoodImage.value = idEdit.toString();
-        formEditFoodImage.classList.add("active");
-        overlay.classList.add("active");
+let prevLableDelivery = null;
+let prevLablePayment = null;
+
+labelDeliveries.forEach((label) => {
+    label.addEventListener("click", () => {
+        if (prevLableDelivery != null) {
+            prevLableDelivery.classList.remove("btn-danger");
+        }
+        label.classList.add("btn-danger");
+        prevLableDelivery = label;
     })
 })
 
-
+labelPayments.forEach((label) => {
+    label.addEventListener("click", () => {
+        if (prevLablePayment != null) {
+            prevLablePayment.classList.remove("btn-danger");
+        }
+        label.classList.add("btn-danger");
+        prevLablePayment = label;
+    })
+})
 
 btnDeleteFood.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -185,73 +271,52 @@ btnDeleteFood.forEach((btn) => {
     })
 });
 
-inputFoodImage.addEventListener("input", (e) => {
-    btnChooseMenuImage.textContent = "File selected: " + (e.target.files[0].name);
-    boxDisplayImage.src = URL.createObjectURL(e.target.files[0]);
-})
-
-let prevBtnChooseMenu = null;
-
-
-
-btnChooseMenu.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        console.log(prevBtnChooseMenu);
-        if (prevBtnChooseMenu != null) {
-            prevBtnChooseMenu.classList.remove("btn-warning");
-            prevBtnChooseMenu.nextElementSibling.checked = false;
-        }
-        btn.classList.add("btn-warning");
-        btn.nextElementSibling.checked = true;
-        prevBtnChooseMenu = btn;
-    });
-});
-
-btnEditCategory.forEach((btn) => {
+btnEditOrders.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         event.preventDefault();
         overlay.classList.add("active");
         formData.classList.add("active");
-        const id = btn.value;
+        const id = btn.getAttribute("data-edit");
         $.ajax({
-            url: "./get-product-by-id.php",
-            type: "POST",
-            data: {
-                id: btn.value,
-            },
+            url: "./get-order-by-id.php?id=" + id,
+            type: "GET",
             success: function(data) {
+                console.log(data);
+                inputOrderId.value = data.id;
+                inputOrderCustomerName.value = data.fullname;
+                inputOrderEmail.value = data.email;
+                inputOrderPhone.value = data.phone;
+                inputOrderAddress.value = data.address;
+                labelDeliveries[data.delivery_status].classList.add("btn-danger");
+                prevLableDelivery = labelDeliveries[data.delivery_status];
+                labelPayments[data.payment_status].classList.add("btn-danger");
+                prevLablePayment = labelPayments[data.payment_status];
+                const inputDeliveryStatus = labelDeliveries[data.delivery_status].childNodes[1];
+                inputDeliveryStatus.checked = true;
+                const inputPaymentStatus = labelPayments[data.payment_status].childNodes[1];
+                inputPaymentStatus.checked = true;
 
-                inputEditFoodId.value = data.id;
-                inputEditFoodName.value = data.name;
-                CKEDITOR.instances['product-content-edit'].setData(data.description);
-
-                inputEditFoodPrice.value = data.price;
-                inputFoodImageEdit.value = data.image;
-                inputMenuIdEdit.forEach((input) => {
-                    if (input.value == data.menu_id) {
-                        input.checked = true;
-                        input.previousElementSibling.classList.toggle(
-                            "btn-warning");
-                        prevBtnChooseMenu = input.previousElementSibling;
-
-                    }
+                let html = "";
+                let total = 0;
+                data.details.forEach((detail) => {
+                    total += (detail.product.price * detail.quantity);
+                    html += `
+                    <div class="product-item">
+                        <img src="../../public/storage/${detail.product.image}" alt="product image">
+                        <div class="product-infor">
+                            <h3 class="product-name">${detail.product.name}</h3>
+                            <p class="product-quantity">x${detail.quantity}</p>
+                            <p class="product-price">
+                                $${detail.product.price}
+                            </p>
+                        </div>
+                    </div>`;
                 })
 
-                boxImage.textContent = "";
-                let images = data.images;
-                images.push({
-                    name: data.image
-                });
+                boxProduct.innerHTML = html;
+                totalPay.innerHTML = "<b>Total:</b> $" + total;
 
-                images.forEach((img) => {
-                    // <img src="images/spaghetti-bolognese-36.jpg" style="max-width: 200px; height: auto" class="rounded-3" alt="food image"/>
-                    const imgTag = document.createElement("img");
-                    imgTag.setAttribute("src", "../../public/storage/" + img.name);
-                    imgTag.style.maxWidth = "200px";
-                    imgTag.classList.add("rounded-3");
-                    imgTag.setAttribute("alt", "food image");
-                    boxImage.appendChild(imgTag);
-                });
+                
             },
             error: function(xhr) {
 
@@ -267,25 +332,6 @@ btnCloseForm.forEach((btn) => {
     });
 });
 
-btnAdd.addEventListener("click", (event) => {
-    event.preventDefault();
-    overlay.classList.add("active");
-    formAdd.classList.add("active");
-});
-
-inputAddMoreFoodImage.addEventListener("input", (e) => {
-
-    const files = e.target.files;
-    for (let i = 0; i < files.length; i++) {
-        const src = URL.createObjectURL(files[i]);
-        const imgTag = document.createElement("img");
-        imgTag.setAttribute("src", src);
-        imgTag.style.maxWidth = "200px";
-        imgTag.classList.add("rounded-3");
-        imgTag.setAttribute("alt", "food image");
-        boxImage.appendChild(imgTag);
-    }
-})
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">

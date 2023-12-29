@@ -29,6 +29,6 @@ $orders = $order->getAllOrderLimit(($page - 1) * $perPage, $perPage);
 $endPage = ceil($total / $perPage);
 $data = [
     'title' => 'Order Management',
-    'slot' => $template->render('order-data', ['orders' => $orders, 'endPage' => $endPage, 'menus_data' => $menus_data])
+    'slot' => $template->render('order-data', ['orders' => $orders, 'endPage' => $endPage])
 ];
 $template->view("layout-admin", $data);
