@@ -78,20 +78,32 @@
                     <!-- Social -->
                     <div class="social flex-w flex-l-m p-r-20">
                         <?php if (isset($_COOKIE['username'])) { ?>
-                            <a class="mr-2" href="#" class="mr-2 d-flex align-items-center justify-content-center"
-                                style="font-size: 16px">
-                                <?= $_COOKIE['username'] ?>
-                            </a>
-                            <a href="logout.php" class="mr-2 d-flex align-items-center justify-content-center"
-                                style="font-size: 20px">
-                                <ion-icon name="log-out-outline"></ion-icon>
-                            </a>
-                        <?php } else { ?>
-                            <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center"
-                                style="font-size: 16px; margin-right: 14px;">Login</a>
-                            <a href="register.php" class="mr-2 d-flex align-items-center justify-content-center"
-                                style="font-size: 16px">Register</a>
 
+                        <div class="mr-2 d-flex align-items-center justify-content-center user-account"
+                            style="font-size: 16px; cursor: pointer; color: #ec1d25; position: relative;">
+                            <?= $_COOKIE['username'] ?>
+                            <div class="box-action-account"
+                                style="top: calc(100%);position: absolute; padding: 20px; border-radius: 10px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                                <ul class="d-flex align-items-center flex-col">
+                                    <li>
+                                        <a href="order-history.php" style="color: #000;">Your history order
+                                            <ion-icon name="reload-outline"></ion-icon>
+                                        </a>    
+                                    </li>
+                                    <li>
+                                        <a href="logout.php" style="color: #000;">Logout
+                                            <ion-icon name="log-out-outline"></ion-icon>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php } else { ?>
+                        <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center text-uppercase"
+                            style="font-size: 14px; margin-right: 14px;">Login</a>
+                        <a href="register.php"
+                            class="mr-2 d-flex align-items-center justify-content-center text-uppercase"
+                            style="font-size: 14px">Register</a>
                         <?php } ?>
                         <a href="shopping-cart.php"
                             class="mr-2 d-flex align-items-center justify-content-center pos-relative"
@@ -103,7 +115,6 @@
                         </a>
                         <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
                     </div>
-
                     <!-- end social -->
                 </div>
             </div>
@@ -425,7 +436,7 @@
     <!--===============================================================================================-->
     <script type="text/javascript" src="public/vendor/parallax100/parallax100.js"></script>
     <script type="text/javascript">
-        $('.parallax100').parallax100();
+    $('.parallax100').parallax100();
     </script>
     <!--===============================================================================================-->
     <script type="text/javascript" src="public/vendor/countdowntime/countdowntime.js"></script>

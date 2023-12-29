@@ -1,20 +1,16 @@
 <?php
 include '../../config/database.php';
 $member = new Member();
-if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
-    $username = $_COOKIE["username"];
-    $password = $_COOKIE["password"];
-    $status = $member->login($username, $password);
-    if ($status != 0) { // Double check if not admin
+if (isset($_COOKIE["token"])) {
+    $token = $_COOKIE["token"];
+    $user = $member->getUserByToken($token);
+    if ($user["role"] == 1) { // Double check if not admin
         header("location: index.php");
         exit();
     }
 } else {
     header("location: index.php");
 }
-
-
-
 
 $template = new Template();
 $menu = new Menu();
