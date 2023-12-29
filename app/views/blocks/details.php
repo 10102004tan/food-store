@@ -70,7 +70,7 @@
                     <input hidden name="price" value="<?= $food['price'] ?>">
                     <div class="d-flex align-items-center">
                         <div class="price-box mb-3 mr-3">
-                            <?= $food['price'] ?>
+                            $<?= $food['price'] ?>
                         </div>
 
                         <div class="box-qty mb-3">

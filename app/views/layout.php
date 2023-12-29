@@ -47,7 +47,8 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="index.php">
-                            <img src="public/images/icons/logo.png" alt="IMG-LOGO" data-logofixed="public/images/icons/logo2.png">
+                            <img src="public/images/icons/logo.png" alt="IMG-LOGO"
+                                data-logofixed="public/images/icons/logo2.png">
                         </a>
                     </div>
 
@@ -75,16 +76,35 @@
                     <!-- Social -->
                     <div class="social flex-w flex-l-m p-r-20">
                         <?php if (isset($_COOKIE['username'])) { ?>
-                            <a class="mr-2" href="#" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 16px"><?= $_COOKIE['username'] ?></a>
-                            <a href="logout.php" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 20px">
-                                <ion-icon name="log-out-outline"></ion-icon>
-                            </a>
+                        <div class="mr-2 d-flex align-items-center justify-content-center user-account"
+                            style="font-size: 16px; cursor: pointer; color: #ec1d25; position: relative;">
+                            <?= $_COOKIE['username'] ?>
+                            <div class="box-action-account"
+                                style="top: calc(100%);position: absolute; padding: 20px; border-radius: 10px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                                <ul class="d-flex align-items-center flex-col">
+                                    <li>
+                                        <a href="order-history.php" style="color: #000;">Your history order
+                                            <ion-icon name="reload-outline"></ion-icon>
+                                        </a>    
+                                    </li>
+                                    <li>
+                                        <a href="logout.php" style="color: #000;">Logout
+                                            <ion-icon name="log-out-outline"></ion-icon>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <?php } else { ?>
-                            <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 16px; margin-right: 14px;">Login</a>
-                            <a href="register.php" class="mr-2 d-flex align-items-center justify-content-center" style="font-size: 16px">Register</a>
-
+                        <a href="login.php" class="mr-2 d-flex align-items-center justify-content-center text-uppercase"
+                            style="font-size: 14px; margin-right: 14px;">Login</a>
+                        <a href="register.php"
+                            class="mr-2 d-flex align-items-center justify-content-center text-uppercase"
+                            style="font-size: 14px">Register</a>
                         <?php } ?>
-                        <a href="shopping-cart.php" class="mr-2 d-flex align-items-center justify-content-center pos-relative" style="font-size: 20px">
+                        <a href="shopping-cart.php"
+                            class="mr-2 d-flex align-items-center justify-content-center pos-relative"
+                            style="font-size: 20px">
                             <ion-icon name="cart-outline"></ion-icon>
                             <span class="shopping-cart-amount">
                                 <?= isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : 0 ?>
@@ -92,7 +112,6 @@
                         </a>
                         <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
                     </div>
-
                     <!-- end social -->
                 </div>
             </div>
@@ -129,39 +148,48 @@
 
             <!-- Gallery -->
             <div class="wrap-gallery-sidebar flex-w">
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-01.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-02.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-03.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-05.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-06.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-07.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-09.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-10.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
                 </a>
 
-                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
+                <a class="item-gallery-sidebar wrap-pic-w" href="public/images/photo-gallery-11.jpg"
+                    data-lightbox="gallery-footer">
                     <img src="public/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
                 </a>
             </div>
@@ -274,51 +302,63 @@
 
                     <!-- Gallery footer -->
                     <div class="wrap-gallery-footer flex-w">
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-01.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-02.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-03.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-04.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-04.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-04.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-05.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-06.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-07.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-08.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-08.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-09.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-10.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-11.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
                         </a>
 
-                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
+                        <a class="item-gallery-footer wrap-pic-w" href="public/images/photo-gallery-12.jpg"
+                            data-lightbox="gallery-footer">
                             <img src="public/images/photo-gallery-thumb-12.jpg" alt="GALLERY">
                         </a>
                     </div>
@@ -337,7 +377,8 @@
                     </div>
 
                     <div class="txt17 p-r-20 p-t-5 p-b-5">
-                        Copyright &copy; 2018 All rights reserved | This template is made with <i class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        Copyright &copy; 2018 All rights reserved | This template is made with <i
+                            class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     </div>
                 </div>
             </div>
@@ -364,7 +405,8 @@
             <div class="wrap-video-mo-01">
                 <div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
                 <div class="video-mo-01">
-                    <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0"
+                        allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -391,7 +433,7 @@
     <!--===============================================================================================-->
     <script type="text/javascript" src="public/vendor/parallax100/parallax100.js"></script>
     <script type="text/javascript">
-        $('.parallax100').parallax100();
+    $('.parallax100').parallax100();
     </script>
     <!--===============================================================================================-->
     <script type="text/javascript" src="public/vendor/countdowntime/countdowntime.js"></script>

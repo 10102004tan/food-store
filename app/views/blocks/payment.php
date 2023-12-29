@@ -10,21 +10,22 @@
                 Pay with Momo
             </span>
             <div class="d-flex align-items-center justify-content-center">
-                <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="momo_qr_payment.php" class="mr-2">
+                <form method="POST" enctype="application/x-www-form-urlencoded" action="momo_qr_payment.php"
+                    class="mr-2">
                     <input type=" submit" name="momo" value="Pay with Momo QR code" class="btn btn-pay-with-momo">
                 </form>
-                <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="momo_atm_payment.php" class="">
+                <form method="POST" enctype="application/x-www-form-urlencoded" action="momo_atm_payment.php" class="">
                     <?php
                     if (!empty($order)) {
                     ?>
-                        <input type="text" name="order_id" value="<?= $order["id"] ?>" hidden>
+                    <input type="text" name="order_id" value="<?= $order["id"] ?>" hidden>
                     <?php
                     }
                     ?>
                     <?php
                     if (!empty($totalPay)) {
                     ?>
-                        <input type="text" name="amount" value="<?= $totalPay ?>" hidden>
+                    <input type="text" name="amount" value="<?= $totalPay ?>" hidden>
                     <?php
                     }
                     ?>
@@ -38,10 +39,11 @@
                 Pay with VN Pay
             </span>
             <div class="d-flex align-items-center justify-content-center">
-                <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="momo_qr_payment.php" class="mr-2">
+                <form method="POST" enctype="application/x-www-form-urlencoded" action="momo_qr_payment.php"
+                    class="mr-2">
                     <input type=" submit" name="momo" value="Pay with Momo QR code" class="btn btn-pay-with-vnpay">
                 </form>
-                <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="momo_atm_payment.php" class="">
+                <form method="POST" enctype="application/x-www-form-urlencoded" action="momo_atm_payment.php" class="">
                     <input type="submit" name="momo" value="Pay with Momo ATM" class="btn btn-pay-with-vnpay">
                 </form>
             </div>

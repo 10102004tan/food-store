@@ -34,7 +34,7 @@
                         <?= $item['quantity'] ?>
                     </td>
                     <td>
-                        <?= $item['price'] ?>
+                        <?= "$" . $item['price'] ?>
                     </td>
                     <td>
                         <a class="h3" href="./delete-shopping-cart.php?id=<?= $item["id"] ?>">
@@ -47,7 +47,7 @@
         </table>
         <div class="text-right">
             <div>
-                <b>Total: <?= (isset($total)) ? $total : "0" ?></b>
+                <b>Total: <?= (isset($total)) ? "$".$total : "0" ?></b>
             </div>
             <a href="./checkout.php">Checkout</a>
         </div>

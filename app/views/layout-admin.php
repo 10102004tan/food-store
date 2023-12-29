@@ -39,6 +39,9 @@
                         <a class="nav-link" href="../../admin/reservations/index.php">Reservation management</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="../../admin/orders/index.php">Order management</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../../logout.php">Logout</a>
                     </li>
                 </ul>
