@@ -1,30 +1,5 @@
-<?php 
-include 'config/database.php';
-$username;
-$password;
-$email;
-$errors = array();
-if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $email = $_POST["email"];
-    $member = new Member();
-    $_SESSION['info'] = "";
-    if ($member->checkEmail($email,$username))
-    {
-        if ($member->register($username, $password,$email)) {
-            $_SESSION['info'] = "Đăng kí thành công";
-        }
-        else{
-            $errors['error-register'] = "Đăng kí thất bại";
-        }
-    }
-    else{
-        $errors['email-invalid'] = "Email hoặc tên đăng nhập đã tồn tại.";
-    }
-    
-}
-
+<?php
+require_once "controllerUserData.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,26 +26,26 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
             <div class="row justify-content-center">
 
                 <div class="col-md-6 col-lg-4">
-                    
 
-                <?php 
-                    if(isset($_SESSION['info']) && !empty($_SESSION['info'])){
+
+                    <?php
+                    if (isset($_SESSION['info']) && !empty($_SESSION['info'])) {
                         ?>
                         <div class="alert alert-success text-center" style="padding: 0.4rem 0.4rem">
                             <?php echo $_SESSION['info'];
                             unset($_SESSION['info'])
-                            ?>
+                                ?>
                         </div>
                         <?php
                     }
                     ?>
 
-                <?php
-                    if(count($errors) > 0){
+                    <?php
+                    if (count($errors) > 0) {
                         ?>
                         <div class="alert alert-danger text-center">
                             <?php
-                            foreach($errors as $showerror){
+                            foreach ($errors as $showerror) {
                                 echo $showerror;
                             }
                             ?>
@@ -81,7 +56,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
 
                     <div class="login-wrap p-0">
                         <h3 class="mb-4 text-center">Register page</h3>
-                        <form class="signin-form" action="#" method="POST">
+                        <form class="signin-form" action="register.php" method="POST">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Username" name="username" required>
                             </div>
@@ -103,7 +78,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
                             </div>
 
                             <div class="form-group">
-                                <button type="button" class="form-control btn btn-primary submit px-3 btn-sign-up">Sign
+                                <button type="submit" name="register"
+                                    class="form-control btn btn-primary submit px-3 btn-sign-up">Sign
                                     Up</button>
                             </div>
                         </form>
@@ -120,37 +96,37 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
     <script src="public/js/main_login.js"></script>
 
     <script type="text/javascript">
-    const inputPassword = document.querySelector("#password-field");
-    const inputConfirmPassword = document.querySelector("#confirm-password-field");
-    const buttonSignUp = document.querySelector(".btn-sign-up");
-    const formSignUp = document.querySelector(".signin-form");
-    const inputUsername = document.querySelector("input[name='username']");
-    const inputEmail = document.querySelector("input[name='email']");
+        const inputPassword = document.querySelector("#password-field");
+        const inputConfirmPassword = document.querySelector("#confirm-password-field");
+        const buttonSignUp = document.querySelector(".btn-sign-up");
+        const formSignUp = document.querySelector(".signin-form");
+        const inputUsername = document.querySelector("input[name='username']");
+        const inputEmail = document.querySelector("input[name='email']");
 
 
 
-    buttonSignUp.addEventListener("click", () => {
-        let isSubmit = true;
+        buttonSignUp.addEventListener("click", () => {
+            let isSubmit = true;
 
-        if (inputUsername.value.includes(" ")) {
-            isSubmit = false;
-            alert("Username cannot contain spaces !!!");
-        }
+            if (inputUsername.value.includes(" ")) {
+                isSubmit = false;
+                alert("Username cannot contain spaces !!!");
+            }
 
-        if (inputPassword.value !== inputConfirmPassword.value) {
-            isSubmit = false;
-            alert("Mismatched password !!!");
-        }
+            if (inputPassword.value !== inputConfirmPassword.value) {
+                isSubmit = false;
+                alert("Mismatched password !!!");
+            }
 
-        if (!inputEmail.value.includes("@")) {
-            isSubmit = false;
-            alert("Email not valid !!!");
-        }
+            if (!inputEmail.value.includes("@")) {
+                isSubmit = false;
+                alert("Email not valid !!!");
+            }
 
-        if (isSubmit) {
-            formSignUp.submit();
-        }
-    })
+            if (isSubmit) {
+                formSignUp.submit();
+            }
+        })
     </script>
 </body>
 

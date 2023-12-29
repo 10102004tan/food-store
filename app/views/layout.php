@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-    <title><?php if (!empty($title)) {
-                echo $title;
-            } ?></title>
+    <title>
+        <?php if (!empty($title)) {
+            echo $title;
+        } ?>
+    </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -76,6 +78,7 @@
                     <!-- Social -->
                     <div class="social flex-w flex-l-m p-r-20">
                         <?php if (isset($_COOKIE['username'])) { ?>
+
                         <div class="mr-2 d-flex align-items-center justify-content-center user-account"
                             style="font-size: 16px; cursor: pointer; color: #ec1d25; position: relative;">
                             <?= $_COOKIE['username'] ?>
@@ -441,6 +444,9 @@
     <script type="text/javascript" src="public/vendor/lightbox2/js/lightbox.min.js"></script>
     <!--===============================================================================================-->
     <script src="public/js/main.js"></script>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger intent="WELCOME" chat-title="Food Store" agent-id="6a34ab84-94d3-40f2-a71c-6e37046b99cb"
+        language-code="vi"></df-messenger>
 
 </body>
 
