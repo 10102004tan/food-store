@@ -314,16 +314,6 @@ btnEditFoodImage.forEach(btn => {
 })
 
 
-
-btnDeleteFood.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        const form = btn.parentElement;
-        if (confirm("Are you sure to delete it ?")) {
-            form.submit();
-        }
-    })
-});
-
 inputFoodImage.addEventListener("input", (e) => {
     btnChooseMenuImage.textContent = "File selected: " + (e.target.files[0].name);
     boxDisplayImage.src = URL.createObjectURL(e.target.files[0]);
