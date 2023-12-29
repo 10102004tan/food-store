@@ -68,7 +68,7 @@
                                         if ($order["delivery_status"] == 1) {
                                             echo "<button class='btn btn-warning'>in transit</button>";
                                         }else if ($order["delivery_status"] == 0 ) {
-                                            echo "<button class='btn btn-warning'>preparing the order</button>";
+                                            echo "<button class='btn btn-warning'>preparing</button>";
                                         }else {
                                             echo "<button class='btn btn-success'>delivered</button>";
                                         }
