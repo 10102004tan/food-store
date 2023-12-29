@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 27, 2023 at 01:39 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th12 29, 2023 lúc 06:54 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `food_store_db`
+-- Cơ sở dữ liệu: `food_store_db`
 --
-CREATE DATABASE IF NOT EXISTS `food_store_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `food_store_db`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Cấu trúc bảng cho bảng `members`
 --
 
 CREATE TABLE `members` (
@@ -35,23 +33,26 @@ CREATE TABLE `members` (
   `password` varchar(2000) NOT NULL,
   `code` varchar(100) DEFAULT NULL,
   `role` int(11) NOT NULL DEFAULT 1,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `token` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `members`
+-- Đang đổ dữ liệu cho bảng `members`
 --
 
-INSERT INTO `members` (`id`, `username`, `password`, `code`, `role`, `email`) VALUES
-(15, 'admin', '$2y$10$PvKbkajQ8yIMujtd4vh/yer0FmkrtYtFj/VzQSZl4PKfp.WuFmPKO', '0', 0, 'tan@gmail.com'),
-(16, 'tan', '$2y$10$u8svlLWjtMn0sm.7oXn9l.xN6P8OD6EohSA9sy7Fb4rg326H5uqmi', '0', 1, 'tannguyen.10102004@gmail.com'),
-(17, 'tannguyen123', '$2y$10$K3R5CGfnN.0/DHq0ksbeXOQ0BdCZvoD5EVuc.ay3uNLbxt/ETdU/m', NULL, 1, 'tannguyen.10102004@gmail.com'),
-(22, 'tannguyen', '$2y$10$JIH1sSOP7.UsaP.nY4BYgOHSrzQh1.FuimNe4mlCU/XYYYwIUnS/O', '776921', 1, 'tannguyen.10ddd102004@gmail.com');
+INSERT INTO `members` (`id`, `username`, `password`, `code`, `role`, `email`, `token`) VALUES
+(15, 'admin', '$2y$10$PvKbkajQ8yIMujtd4vh/yer0FmkrtYtFj/VzQSZl4PKfp.WuFmPKO', '0', 0, 'tan@gmail.com', '884ce14f1d147b3bcba3f0ab2eb7f0a2'),
+(16, 'tan', '$2y$10$u8svlLWjtMn0sm.7oXn9l.xN6P8OD6EohSA9sy7Fb4rg326H5uqmi', '0', 1, 'tannguyen.10102004@gmail.com', ''),
+(17, 'tannguyen123', '$2y$10$K3R5CGfnN.0/DHq0ksbeXOQ0BdCZvoD5EVuc.ay3uNLbxt/ETdU/m', NULL, 1, 'tannguyen.10102004@gmail.com', ''),
+(22, 'tannguyen', '$2y$10$JIH1sSOP7.UsaP.nY4BYgOHSrzQh1.FuimNe4mlCU/XYYYwIUnS/O', '776921', 1, 'tannguyen.10ddd102004@gmail.com', ''),
+(23, 'ser', '$2y$10$weEeOtNshiDenXdK/lf7MetDTl87hCZcFAUlWtXoLiT7rdMzUgkPy', NULL, 1, 'ser@ser.ser', 'cc01b053afef7c678e1d1463fd235e77'),
+(24, 'NguyenTienDat', '$2y$10$Xac1HIL5Y.2TrufYXE1qoevb5s/LvtPG0gqwcoo2AN7dpdxOsjwvy', NULL, 1, 'dat@gmail.com', '8dcdb13022f9fbb6ed0eb22804a99389');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Cấu trúc bảng cho bảng `menus`
 --
 
 CREATE TABLE `menus` (
@@ -61,7 +62,7 @@ CREATE TABLE `menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `menus`
+-- Đang đổ dữ liệu cho bảng `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `description`) VALUES
@@ -75,7 +76,115 @@ INSERT INTO `menus` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `momo_payment`
+--
+
+CREATE TABLE `momo_payment` (
+  `partner_code` varchar(500) NOT NULL,
+  `order_id` varchar(500) NOT NULL,
+  `request_id` varchar(500) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `order_info` varchar(500) NOT NULL,
+  `order_type` varchar(500) NOT NULL,
+  `trans_id` varchar(500) NOT NULL,
+  `result_code` int(11) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `pay_type` varchar(500) NOT NULL,
+  `response_time` varchar(500) NOT NULL,
+  `extra_data` varchar(500) DEFAULT NULL,
+  `signature` varchar(500) NOT NULL,
+  `payment_option` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `momo_payment`
+--
+
+INSERT INTO `momo_payment` (`partner_code`, `order_id`, `request_id`, `amount`, `order_info`, `order_type`, `trans_id`, `result_code`, `message`, `pay_type`, `response_time`, `extra_data`, `signature`, `payment_option`) VALUES
+('MOMOBKUN20180529', '658ce4432e8cc1703732291', '1703732294', 15792000, 'Thanh toán qua MoMo', 'momo_wallet', '3111297476', 0, 'Successful.', 'napas', '1703732385079', '', 'e258e11e99198131b62467eddc7fa1491ab9aa2b02de1365c0bb3a5923c54755', 'momo'),
+('MOMOBKUN20180529', '658ce59b9be0d1703732635', '1703732638', 15792000, 'Thanh toán qua MoMo', 'momo_wallet', '3111318231', 0, 'Successful.', 'napas', '1703732684686', '', 'abd6274f2418e9a302396eccc07e331ba66664a660c1f394dfe2f7baf28a1df2', 'momo'),
+('MOMOBKUN20180529', '658d6afa2b9651703766778', '1703766779', 960000, 'Thanh toán qua MoMo', 'momo_wallet', '3111620798', 0, 'Successful.', 'napas', '1703766836834', '', '156ffe940cf9b7850979e6f82d44adad385c8f580aeda93e98b006f142ac6679', 'momo'),
+('MOMOBKUN20180529', '658d7363e07c51703768931', '1703768933', 3360000, 'Thanh toán qua MoMo', 'momo_wallet', '3111580757', 0, 'Successful.', 'napas', '1703768976082', '', '4fd03ccf0092dadc702935da0bc7051727c0ca73418343cf6e244454fee25ca1', 'momo'),
+('MOMOBKUN20180529', '658d89496fe131703774537', '1703774538', 1800000, 'Thanh toán qua MoMo', 'momo_wallet', '3111621973', 0, 'Successful.', 'napas', '1703774590620', '', '13eb256207e111df9977681786b4b7a25658a1b78e382e63133e3be91c3aa4bc', 'momo'),
+('MOMOBKUN20180529', '658d8fc8eeb5f1703776200', '1703776202', 2880000, 'Thanh toán qua MoMo', 'momo_wallet', '3111622272', 0, 'Successful.', 'napas', '1703776241910', '', '6c94045dc17382dc3c6e35c32f094ba27e9d3e1c579075b083377b867b9da7a3', 'momo'),
+('MOMOBKUN20180529', '658e18bb633ac1703811259', '1703811262', 4200000, 'Thanh toán qua MoMo', 'momo_wallet', '3111547468', 0, 'Successful.', 'napas', '1703811328126', '', 'e88ec3c512a4267f1f86a96a468c5b73516e2957414a096ca57fb611d6cdde50', 'momo'),
+('MOMOBKUN20180529', '658e39ab8496a1703819691', '1703819694', 1440000, 'Thanh toán qua MoMo', 'momo_wallet', '3111507705', 0, 'Successful.', 'napas', '1703819739741', '', '35f9d0876a7ead173381886ddad3ab048875c6c6bfeaeb77b0f58aaf5023c38f', 'momo'),
+('MOMOBKUN20180529', '658e49991bcbb1703823769', '1703823771', 10800000, 'Thanh toán qua MoMo', 'momo_wallet', '3111612900', 0, 'Successful.', 'napas', '1703823818299', '', 'ac42cc282587a0f1d53e0c425018bb9d0c568b990af3062447566a30b2896cc6', 'momo'),
+('MOMOBKUN20180529', '658e4c57a012e1703824471', '1703824473', 2400000, 'Thanh toán qua MoMo', 'momo_wallet', '3111587232', 0, 'Successful.', 'napas', '1703824519362', '', '61116ab75940e7f38b1560026e17b22cae3a163a48bfb4cd37769c14aed7427f', 'momo');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` varchar(500) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(1000) NOT NULL,
+  `payment_status` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `delivery_status` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `fullname`, `email`, `phone`, `address`, `payment_status`, `created_at`, `delivery_status`) VALUES
+('658d7363e07c51703768931', 23, 'Nguyen Dat', 'dat@gmail.com', '0988809989', 'Ho Chi Minh', 1, '2023-12-28 13:08:51', 0),
+('658d89496fe131703774537', 23, 'Nguyen Dat', 'dat@gmail.com', '098899000', 'Ho Chi Minh', 1, '2023-12-28 14:42:17', 0),
+('658d8fc8eeb5f1703776200', 23, 'Dat Nguyen', 'dat@gmail.com', '0999999999', 'Thu Duc', 1, '2023-12-28 15:10:00', 0),
+('658e18bb633ac1703811259', 23, 'Nguyen Dat', 'dat61222@gmail.com', '098009999', 'Ho Chi Minh', 1, '2023-12-29 00:54:19', 0),
+('658e39ab8496a1703819691', 23, 'Nguyen Dat', 'dat61222@gmail.com', '09999999', 'Ho Chi Minh ', 1, '2023-12-29 03:14:51', 0),
+('658e49991bcbb1703823769', 24, 'Nguyen Dat', 'dat@gmail.com', '0988999000', 'Ho Chi Minh', 1, '2023-12-29 04:22:49', 2),
+('658e4c57a012e1703824471', 24, 'Nguyen Dat', 'dat@gmail.com', '0999000999', 'Ho Chi Minh', 1, '2023-12-29 04:34:31', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` int(11) NOT NULL,
+  `order_id` varchar(500) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`) VALUES
+(20, '658d7363e07c51703768931', 75, 6),
+(21, '658d7363e07c51703768931', 76, 4),
+(22, '658d7363e07c51703768931', 32, 10),
+(23, '658d89496fe131703774537', 68, 5),
+(24, '658d8af050e6a1703774960', 45, 6),
+(25, '658d8af050e6a1703774960', 32, 6),
+(26, '658d8b50637261703775056', 45, 6),
+(27, '658d8b50637261703775056', 32, 6),
+(28, '658d8b62c60f41703775074', 45, 6),
+(29, '658d8b62c60f41703775074', 32, 6),
+(30, '658d8fc8eeb5f1703776200', 45, 6),
+(31, '658d8fc8eeb5f1703776200', 32, 6),
+(32, '658e18bb633ac1703811259', 68, 5),
+(33, '658e18bb633ac1703811259', 50, 5),
+(34, '658e18bb633ac1703811259', 35, 5),
+(35, '658e39ab8496a1703819691', 63, 5),
+(36, '658e49991bcbb1703823769', 62, 20),
+(37, '658e49991bcbb1703823769', 35, 10),
+(38, '658e4c57a012e1703824471', 33, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `products`
 --
 
 CREATE TABLE `products` (
@@ -88,7 +197,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`) VALUES
@@ -124,16 +233,13 @@ INSERT INTO `products` (`id`, `menu_id`, `image`, `name`, `description`, `price`
 (68, 12, 'bucatini-amatriciana-18-1.jpg', 'Pasta all\'Amatriciana', 'Polenta cooked with mushrooms, often drizzled with mushroom sauce and cheese.', 15),
 (69, 12, 'BISTECCA-093022.jpg', 'Bistecca alla Fiorentina', 'A large T-bone steak from high-quality beef, usually grilled or seared, served with sauce and fresh greens', 50),
 (70, 12, 'spaghetti-alle-vongole-recipe-jpg-1676890130.jpg', 'Linguine alle Vongole', 'A popular pasta dish with clam sauce, garlic, chili, and olive oil', 30),
-(75, 9, 'cannoli-small-8-scaled.jpg', 'Cannoli', '<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n\r\n<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n', 4),
-(76, 9, 'gelato-1296x728-header.webp', 'Gelato', '<p>Description:<strong> An Italian ice cream similar to regular ice cream but with a softer texture and lower fat content</strong></p>\r\n', 4),
-(77, 9, 'ac18aa15611572f79a25dfc41356ed0b.jpg', 'Affogatoo', 'Description: A cup of strong black espresso poured directly over a scoop of vanilla or cappuccino-flavored ice cream', 5),
-(90, 6, 'c95916519436ceac9184ae946aa4f1f520231221090252.jpg', 'Test', 'Test desc', 2000000),
-(91, 8, 'c95916519436ceac9184ae946aa4f1f520231221101809.jpg', 'test2', 'desc', 1234);
+(75, 9, 'cannoli-small-8-scaled.jpg', 'Cannoli', '<p>Crispy pastry shells filled with a mixture of ricotta cheese, sugar, and other ingredients</p>\r\n', 4),
+(76, 9, 'gelato-1296x728-header.webp', 'Gelato', '<p>Description:<strong> An Italian ice cream similar to regular ice cream but with a softer texture and lower fat content</strong></p>\r\n', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_comments`
+-- Cấu trúc bảng cho bảng `product_comments`
 --
 
 CREATE TABLE `product_comments` (
@@ -144,7 +250,7 @@ CREATE TABLE `product_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `product_comments`
+-- Đang đổ dữ liệu cho bảng `product_comments`
 --
 
 INSERT INTO `product_comments` (`id`, `product_id`, `comment`, `username`) VALUES
@@ -160,7 +266,7 @@ INSERT INTO `product_comments` (`id`, `product_id`, `comment`, `username`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_images`
+-- Cấu trúc bảng cho bảng `product_images`
 --
 
 CREATE TABLE `product_images` (
@@ -170,7 +276,7 @@ CREATE TABLE `product_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `product_images`
+-- Đang đổ dữ liệu cho bảng `product_images`
 --
 
 INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
@@ -203,23 +309,19 @@ INSERT INTO `product_images` (`id`, `name`, `product_id`) VALUES
 (121, 'aperol-spritz-index-64873f08af990.jpg', 48),
 (122, 'linguine-with-clams-3.jpg', 70),
 (123, '201305-r-florentine-beefsteak_0-2000-eea190cb4f0e4d68b0595f9042c1f3b8.jpg', 69),
-(126, 'Affogato_0-SQ.webp', 77),
-(127, 'k_Photo_Recipes_2020-07-How-to-make-affogato-at-home_Kitchn_HowTo_Affogato_0281.jpeg', 77),
 (128, '5e434363-f5c3-456e-b6ea-c1c88b-5013-3571-1526988505.jpg', 33),
 (129, 'code456sdf.png', 78),
 (130, 'Screenshot from 2023-12-15 21-48-29.png', 78),
 (131, 'Screenshot from 2023-12-15 21-49-53.png', 78),
 (132, 'sdfsdf.png', 78),
-(157, '836a6d800e5f9defdbbc79565c841dec20231221090304.png', 90),
-(158, '47941587e0e2351c9de87c73cb0e44cd20231221090304.png', 90),
 (159, 'd41d8cd98f00b204e9800998ecf8427e20231227041023.', 76),
-(160, 'd41d8cd98f00b204e9800998ecf8427e20231227041800.', 75),
-(161, 'd41d8cd98f00b204e9800998ecf8427e20231227043136.', 49);
+(161, 'd41d8cd98f00b204e9800998ecf8427e20231227043136.', 49),
+(162, 'd41d8cd98f00b204e9800998ecf8427e20231228143455.', 75);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation`
+-- Cấu trúc bảng cho bảng `reservation`
 --
 
 CREATE TABLE `reservation` (
@@ -233,7 +335,7 @@ CREATE TABLE `reservation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `reservation`
+-- Đang đổ dữ liệu cho bảng `reservation`
 --
 
 INSERT INTO `reservation` (`id`, `date`, `people`, `name`, `phone`, `email`, `status`) VALUES
@@ -254,81 +356,105 @@ INSERT INTO `reservation` (`id`, `date`, `people`, `name`, `phone`, `email`, `st
 (43, '2023-12-27 09:00:00', 3, 'Nguyen Phuong Tan', '0392185869', 'tannguyen.10102004@gmail.com', 2);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `members`
+-- Chỉ mục cho bảng `members`
 --
 ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `menus`
+-- Chỉ mục cho bảng `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Chỉ mục cho bảng `momo_payment`
+--
+ALTER TABLE `momo_payment`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Chỉ mục cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_comments`
+-- Chỉ mục cho bảng `product_comments`
 --
 ALTER TABLE `product_comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_images`
+-- Chỉ mục cho bảng `product_images`
 --
 ALTER TABLE `product_images`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reservation`
+-- Chỉ mục cho bảng `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `members`
+-- AUTO_INCREMENT cho bảng `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `menus`
+-- AUTO_INCREMENT cho bảng `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT cho bảng `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
--- AUTO_INCREMENT for table `product_comments`
+-- AUTO_INCREMENT cho bảng `product_comments`
 --
 ALTER TABLE `product_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `product_images`
+-- AUTO_INCREMENT cho bảng `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
--- AUTO_INCREMENT for table `reservation`
+-- AUTO_INCREMENT cho bảng `reservation`
 --
 ALTER TABLE `reservation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;

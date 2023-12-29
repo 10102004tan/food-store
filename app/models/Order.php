@@ -8,6 +8,19 @@ class Order extends Database
         return parent::select($sql);
     }
 
+    public function getTotalOrder()
+    {
+        $sql = parent::$connection->prepare("SELECT count(*) as 'total' FROM `orders`");
+        return parent::select($sql)[0]['total'];
+    }
+
+    public function getAllOrderLimit($page, $perPage)
+    {
+        $sql = parent::$connection->prepare("SELECT * FROM `orders` GROUP BY orders.id DESC LIMIT ?,?");
+        $sql->bind_param('ii', $page, $perPage);
+        return parent::select($sql);
+    }
+
     public function getOrderByOrderId($orderId)
     {
         $sql = parent::$connection->prepare("SELECT * FROM `orders` WHERE `id` = ?");
