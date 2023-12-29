@@ -80,7 +80,7 @@
                         <?php if (isset($_COOKIE['username'])) { ?>
                             <a class="mr-2" href="#" class="mr-2 d-flex align-items-center justify-content-center"
                                 style="font-size: 16px">
-                                <?= $_COOKIE['username'] ?>
+                                <?= $_COOKIE['username']?>
                             </a>
                             <a href="logout.php" class="mr-2 d-flex align-items-center justify-content-center"
                                 style="font-size: 20px">

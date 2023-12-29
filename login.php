@@ -1,38 +1,9 @@
 <?php
-include 'config/database.php';
-
-
-$username = "";
-$password = "";
-$member = new Member();
-// Check if user is already login
-if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
-    $username = $_COOKIE['username'];
-    $password = $_COOKIE['password'];
-} else {
-    // User is not logged in
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-
-    }
-}
-
-if (isset($username) && isset($password) && $username != "" && $password != "") {
-    $status = $member->login($username, $password);
-    if ($status == -1) {
-        $_SESSION['danger'] = "Something went wrong !!!";
-    } else if ($status == 0) { // Admin
-        header("location: app/views/layout-admin.php");
-    } else if ($status == 1) { // User
-        header("location: index.php");
-    }
-}
+require_once "controllerUserData.php";
+unset($_SESSION['info']);
 ?>
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>Login page</title>
     <meta charset="utf-8">
@@ -73,7 +44,7 @@ if (isset($username) && isset($password) && $username != "" && $password != "") 
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                                <button type="submit" name="login" class="form-control btn btn-primary submit px-3">Sign In</button>
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50">
