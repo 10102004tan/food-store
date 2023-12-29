@@ -18,11 +18,13 @@ if (isset($_POST['check-username'])) {
         if (($member->checkUsername($username)) > 0) {
             $code = rand(999999, 111111);
             if ($member->insertCodeToMember($code, $username)) {
-                $subject = 'Reset password food store';
-                $content = "<p>Your password reset code is $code </p>";
+                $subject = 'Đổi mật khẩu';
+                $content = "<p>Mã xác nhận đổi mật khẩu của bạn là $code </p>
+                <p>Vui lòng không chia sẽ mã này cho bất kì ai, cám ơn!!!</p>
+                ";
                 ;
                 if (sendCodeMail($email, $username, $subject, $content)) {
-                    $info = "We've sent a passwrod reset otp to your email";
+                    $info = "Chúng tôi đã gửi mã khôi phục về email của bạn, vui lòng kiểm tra";
                     $_SESSION['info'] = $info;
                     $_SESSION['email'] = $email;
                     $_SESSION['username'] = $username;
@@ -35,7 +37,7 @@ if (isset($_POST['check-username'])) {
             }
         }
     } else {
-        $errors['email'] = "This username does not exist!";
+        $errors['email'] = "Tên đăng nhập không tồn tại";
     }
 }
 
@@ -51,13 +53,13 @@ if (isset($_POST['check-reset-otp'])) {
     $member_data = $member->getMemberByUsername($username);
     $code_opt = $_POST['otp'];
     if ($member_data['code'] == $code_opt) {
-        $info = "Please create a new password that you don't use on any other site.";
+        $info = "Vui lòng thay đổi mật khẩu mới ";
         $_SESSION['info'] = $info;
         $member_data = $member->insertCodeToMember("", $username);
         header('location: new-password.php');
         exit();
     } else {
-        $errors['otp-error'] = "You've entered incorrect code!";
+        $errors['otp-error'] = "Mã xác thực không đúng!!!";
     }
 }
 
@@ -69,7 +71,7 @@ if (isset($_POST['change-password'])) {
     $cpassword = $_POST['cpassword'];
     $_SESSION['info'] = "";
     if ($password !== $cpassword) {
-        $errors['password'] = "Confirm password not matched!";
+        $errors['password'] = "Xác nhận mật khẩu chưa đúng";
     } else {
         $code = 0;
         $email = $_SESSION['email']; //getting this email using session
@@ -77,11 +79,11 @@ if (isset($_POST['change-password'])) {
         echo $username;
         //update pw
         if ($member->updatePassword($username, $encpass)) {
-            $info = "Your password changed. Now you can login with your new password.";
+            $info = "Mật khẩu của bạn đã được thay đổi thành công. Đăng nhập ngay";
             $_SESSION['info'] = $info;
             header('Location: password-changed.php');
         } else {
-            $errors['db-error'] = "Failed to change your password!";
+            $errors['db-error'] = "Thay đổi mật khẩu không thành công";
         }
     }
 }
@@ -97,18 +99,19 @@ if (isset($_POST['check-verify-code']) && !empty($username)) {
         $_SESSION['info'] = $info;
         $member_data = $member->insertCodeToMember("", $username);
         if ($member->activeMember($username)) {
-            $subject = "Register account success";
+            $subject = "Đăng kí tài khoản thành công";
             $content = "
-            Congratulations on successfully signing up for 
-            your Food Store account! We're thrilled to have you on
-            board and look forward to providing you with exceptional
-            service. Your satisfaction is our priority, and we're 
-            dedicated to ensuring your experience with us is nothing
-            short of fantastic. Should you have any questions or
-            need assistance, feel free to reach out. 
-            Welcome, and thank you for choosing us!
+            Chúc mừng bạn đã đăng ký thành công tài khoản
+            <span style='font-weight : bold;'>Food store</span> của bạn! 
+            Chúng tôi rất vui mừng khi có bạn 
+            và mong được mang đến dịch vụ tuyệt vời cho bạn. 
+            Sự hài lòng của bạn là ưu tiên hàng đầu của chúng tôi
+            và chúng tôi cam kết đảm bảo trải nghiệm của bạn với chúng tôi
+            là tuyệt vời nhất có thể. Nếu bạn có bất kỳ câu hỏi nào hoặc cần hỗ trợ,
+            đừng ngần ngại liên hệ. Chào mừng bạn và cảm ơn bạn đã lựa chọn chúng tôi!
             ";
             sendCodeMail($email, $username, $subject, $content);
+            unset($_SESSION['usename']);
             header('location: verify-member-success.php');
         } else {
             $errors['send-mail-error'] = "Please try again later.";
@@ -137,7 +140,10 @@ if (isset($_POST['register'])) {
                 $code = rand(999999, 111111);
                 $member->insertCodeToMember($code, $username);
                 $subject = "Code verify account";
-                $content = "<p>Your account verification code is $code </p>";
+                $content = "<p>Mã xác thực tài khoản của bạn là $code </p>
+                <p>Hãy dùng mã này để xác thực tài khoản, những món quà sẽ đợi bạn ngay khi bạn 
+                xác thực thành công!!!</p>
+                ";
                 sendCodeMail($email, $username, $subject, $content);
                 header('location:verify-member.php');
             } else {
@@ -169,7 +175,6 @@ if (isset($_POST['login'])) {
 
 
     if (isset($username) && isset($password) && !empty($username) && !empty($password)) {
-        
         $_SESSION['username'] = $username;
         $status = $member->login($username, $password);
         if ($status == -2){

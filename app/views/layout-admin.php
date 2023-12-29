@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -37,6 +36,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../../admin/reservations/index.php">Reservation management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../admin/orders/index.php">Order management</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../../logout.php">Logout</a>

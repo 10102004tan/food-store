@@ -10,4 +10,6 @@ spl_autoload_register(function ($className) {
     require_once BASE_URL . "app/models/$className.php";
 });
 
+include BASE_URL . 'helper/token_hash_helper.php';
+
 session_start();

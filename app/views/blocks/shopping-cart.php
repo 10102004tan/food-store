@@ -1,5 +1,6 @@
 <!-- Title Page -->
-<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(public/images/bg-title-page-01.jpg);">
+<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
+    style="background-image: url(public/images/bg-title-page-01.jpg);">
     <h2 class="tit6 t-center">
         Shopping Cart
     </h2>
@@ -23,29 +24,32 @@
             </thead>
             <tbody>
                 <?php foreach ($cart as $item) : ?>
-                    <tr>
-                        <td>
-                            <?= $item['name'] ?>
-                            </th>
-                        <td><img src="public/storage/<?= $item['image'] ?>" style="max-width: 120px; border-radius: 10px" alt="food image" /></td>
-                        <td>
-                            <?= $item['quantity'] ?>
-                        </td>
-                        <td>
-                            <?= $item['price'] ?>
-                        </td>
-                        <td>
-                            <a class="h3" href=""></ion-icon></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <?= $item['name'] ?>
+                        </th>
+                    <td><img src="public/storage/<?= $item['image'] ?>" style="max-width: 120px; border-radius: 10px"
+                            alt="food image" /></td>
+                    <td>
+                        <?= $item['quantity'] ?>
+                    </td>
+                    <td>
+                        <?= "$" . $item['price'] ?>
+                    </td>
+                    <td>
+                        <a class="h3" href="./delete-shopping-cart.php?id=<?= $item["id"] ?>">
+                            <ion-icon name="close-circle-outline"></ion-icon>
+                        </a>
+                    </td>
+                </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
         <div class="text-right">
             <div>
-                <b>Total: <?= (isset($total)) ? $total : "0" ?></b>
+                <b>Total: <?= (isset($total)) ? "$".$total : "0" ?></b>
             </div>
-            <a href="./checkout">Checkout</a>
+            <a href="./checkout.php">Checkout</a>
         </div>
     </div>
 </section>
