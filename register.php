@@ -12,7 +12,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
     $_SESSION['info'] = "";
     if ($member->checkEmail($email,$username))
     {
-        if ($member->register($username, $password,$email)) {
+        if ($member->register($username, $password,$email)){
             $_SESSION['info'] = "Đăng kí thành công";
         }
         else{

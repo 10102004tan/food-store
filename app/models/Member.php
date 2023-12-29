@@ -41,6 +41,7 @@ class Member extends Database
     public function getMemberByUsername($username) {
         $sql = parent::$connection->prepare("SELECT * FROM members where username = ?");
         $sql->bind_param("s", $username);
+        if (count(parent::select($sql)) > 0)
         return parent::select($sql)[0];
     }
 
