@@ -51,6 +51,8 @@ if($email == false){
                     <div class="form-group">
                         <input class="form-control button" type="submit" name="check-reset-otp" value="Submit">
                     </div>
+
+                   
                 </form>
             </div>
         </div>

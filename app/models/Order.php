@@ -4,7 +4,7 @@ class Order extends Database
 
     public function getAllOrder()
     {
-        $sql = parent::$connection->prepare("SELECT * FROM `orders`");
+        $sql = parent::$connection->prepare("SELECT * FROM `orders` ");
         return parent::select($sql);
     }
 

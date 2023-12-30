@@ -6,5 +6,3 @@ $data = [
     'slot' => $template->render('home',[])
 ];
 $template->view("layout",$data);
-
-// test 
