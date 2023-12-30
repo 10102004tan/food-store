@@ -27,7 +27,6 @@ require_once "controllerUserData.php";
 
                 <div class="col-md-6 col-lg-4">
 
-
                     <?php
                     if (isset($_SESSION['info']) && !empty($_SESSION['info'])) {
                         ?>
@@ -102,8 +101,6 @@ require_once "controllerUserData.php";
         const formSignUp = document.querySelector(".signin-form");
         const inputUsername = document.querySelector("input[name='username']");
         const inputEmail = document.querySelector("input[name='email']");
-
-
 
         buttonSignUp.addEventListener("click", () => {
             let isSubmit = true;

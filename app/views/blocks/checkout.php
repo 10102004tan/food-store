@@ -34,7 +34,7 @@
                             <input type="text" class="field-contact" placeholder="Address" name="address">
                         </div>
                         <div class="box-field">
-                            <input type="text" class="field-contact" placeholder="Phone" name="phone">
+                            <input type="number" class="field-contact" placeholder="Phone" name="phone">
                         </div>
                     </div>
                 </div>

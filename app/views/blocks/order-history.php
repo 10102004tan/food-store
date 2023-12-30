@@ -91,7 +91,15 @@
                         </div>
                         <div class="btn-action d-flex align-items-center justify-content-center flex-col"
                             style="gap: 10px">
-                            <button class="btn btn-danger">Buy again</button>
+
+                                <?php
+                                if ($order["delivery_status"] == 2 && $order["payment_status"] == 1) {
+                                    echo "<form action='order-again.php' method='POST'>
+                                    <input type='text' hidden name='id' value=$order[id]>
+                                    <button class='btn btn-danger' type='submit'>Order Again</button>
+                                </form>";
+                                }
+                            ?>
                             <?php
                                 if ($order["delivery_status"] == 0) {
                                     echo " <form action='cancel-order.php' method='POST'>
@@ -133,5 +141,3 @@ btnBack.addEventListener("click", () => {
     window.location.href = "./"
 })
 </script>
-
-$order["delivery_status"] == 1 ? "in transit" : $order["delivery_status"] == 0 ? "preparing the order" :

@@ -349,6 +349,7 @@ btnEditCategory.forEach((btn) => {
                 id: btn.value,
             },
             success: function(data) {
+            console.log(data);
 
                 inputEditFoodId.value = data.id;
                 inputEditFoodName.value = data.name;
