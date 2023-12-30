@@ -201,9 +201,6 @@ if (isset($_GET['page'])) {
                     <?= $food['name'] ?>
                 </td>
                 <td class="t-desc">
-
-                <td>
-
                     <?= $food['description'] ?>
                 </td>
                 <td>

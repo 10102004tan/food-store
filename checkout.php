@@ -25,10 +25,10 @@ foreach ($cart as $key => $quantity) {
 if (count($products) > 0) {
     // handle get checkout information
     if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["address"])) {
-        $fullname = $_POST["firstname"] . " " . $_POST["lastname"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
-        $address = $_POST["address"];
+        $fullname = htmlspecialchars($_POST["firstname"] . " " . $_POST["lastname"]);
+        $email = htmlspecialchars($_POST["email"]);
+        $phone = htmlspecialchars($_POST["phone"]);
+        $address = htmlspecialchars($_POST["address"]);
         $orderId = uniqid() . time();
 
         // Get user id

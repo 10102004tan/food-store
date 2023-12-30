@@ -30,10 +30,10 @@ if (isset($_POST['check-username'])) {
                     $_SESSION['username'] = $username;
                     header('location:reset-code.php');
                 } else {
-                    $errors['otp-error'] = "Failed while sending code!";
+                    $errors['otp-error'] = "Xảy ra lỗi trong quá trình gửi code!";
                 }
             } else {
-                $errors['db-error'] = "Something went wrong!" . $email;
+                $errors['db-error'] = "Đã xảy ra lỗi!" . $email;
             }
         }
     } else {
@@ -114,12 +114,12 @@ if (isset($_POST['check-verify-code']) && !empty($username)) {
             unset($_SESSION['usename']);
             header('location: verify-member-success.php');
         } else {
-            $errors['send-mail-error'] = "Please try again later.";
+            $errors['send-mail-error'] = "Vui lòng thử lại sau.";
         }
 
         exit();
     } else {
-        $errors['otp-error'] = "You've entered incorrect code!";
+        $errors['otp-error'] = "Bạn đã nhập sai mã code!";
     }
 }
 else{
@@ -178,7 +178,7 @@ if (isset($_POST['login'])) {
         $_SESSION['username'] = $username;
         $status = $member->login($username, $password);
         if ($status == -2){
-            $_SESSION['danger'] = "Something went wrong !!!";
+            $_SESSION['danger'] = "Đã xảy ra lỗi !!!";
         } else if ($status == -1) {
             header("location: verify-member.php");
         } else if ($status == 0) { // User
