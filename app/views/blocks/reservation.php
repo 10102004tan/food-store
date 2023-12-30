@@ -11,12 +11,12 @@ if (isset($_POST["name"])
 && isset($_POST["phone"]) 
 && isset($_POST["email"])
 && isset($_POST["time"])) {
-    $name = $_POST["name"];
-    $date = $_POST["date"];
-    $people = $_POST["people"];
-    $phone = $_POST["phone"];
-    $email = $_POST["email"];
-    $time = $_POST["time"];
+    $name = htmlspecialchars($_POST["name"]);
+    $date = htmlspecialchars($_POST["date"]);
+    $people = htmlspecialchars($_POST["people"]);
+    $phone = htmlspecialchars($_POST["phone"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $time = htmlspecialchars($_POST["time"]);
     $date = $date . " " . $time;
     $dateTimeObj = DateTime::createFromFormat('d/m/Y H:i', $date);
     $dateTime = $dateTimeObj->format('Y-m-d H:i:s');
@@ -161,7 +161,7 @@ if (isset($_POST["name"])
                             </span>
 
                             <div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="phone" required
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="phone" required
                                     placeholder="Phone">
                             </div>
                         </div>
@@ -225,9 +225,9 @@ if (isset($_POST["name"])
 <?php
 function sendCodeMail($email,$subject,$content)
 {
-    require "public/PHPMailer/src/PHPMailer.php";
-    require "public/PHPMailer/src/SMTP.php"; 
-    require 'public/PHPMailer/src/Exception.php'; 
+    require "public/phpmailer/src/PHPMailer.php";
+    require "public/phpmailer/src/SMTP.php"; 
+    require 'public/phpmailer/src/Exception.php'; 
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);//true:enables exceptions
     try {
         $mail->SMTPDebug = 0; 

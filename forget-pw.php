@@ -26,7 +26,7 @@ require_once "controllerUserData.php"; ?>
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
-                        <h3 class="mb-4 text-center">Forget password</h3>
+                        <h3 class="mb-4 text-center">Forgot password</h3>
                         <?php
                         if (count($errors) > 0):
                             ?>
@@ -48,7 +48,7 @@ require_once "controllerUserData.php"; ?>
                                     class="form-control btn btn-primary submit px-3">Send</button>
                             </div>
                         </form>
-                        <p class="w-100 text-center">&mdash; Go to login <a href="login.php">Here</a> &mdash;
+                        <p class="w-100 text-center">&mdash; Back to <a href="login.php">Login page</a> &mdash;
                         </p>
                     </div>
                 </div>
