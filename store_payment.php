@@ -1,6 +1,6 @@
 <?php
 include 'config/database.php';
-require_once 'app/views/blocks/orderFormSuccess.php';
+require_once 'app/views/blocks/order-form-success.php';
 $momoPayment = new MomoPayment();
 $order = new Order();
 if (
@@ -39,7 +39,7 @@ if (
     if ($momoPayment->store($orderId, $partnerCode, $requestId, $amount, $orderType, $transId, $resultCode, $message, $payType, $responseTime, $extraData, $signature, $paymentOption, $orderInfo)) {
         if ($resultCode == 0 && $message == "Successful.") {
             $email = $order_data['email'];
-            $subject = "Đơn hàng $orderId đã được xác nhận!
+            $subject = "Đơn hàng #$orderId đã được xác nhận!
             ";
             $content = createFormOrderSuccess($orderId,$order_data['fullname'],$order_data['address'],$amount,$order_data['phone']);
             sendCodeMail($email,$subject,$content);

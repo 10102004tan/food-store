@@ -71,7 +71,7 @@ $content = "
 
                                                                     <h2
                                                                         style='color:#96588a;display:block;font-family:&quot;Helvetica Neue&quot;,Helvetica,Roboto,Arial,sans-serif;font-size:18px;font-weight:bold;line-height:130%;margin:0 0 18px;text-align:left'>
-                                                                        [Đơn hàng $orderId]</h2>
+                                                                        [Đơn hàng #$orderId]</h2>
 
                                                                     <div style='margin-bottom:40px'>
                                                                         <table cellspacing='0' cellpadding='6'
