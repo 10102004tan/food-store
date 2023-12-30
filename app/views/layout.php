@@ -86,7 +86,7 @@
                                 style="top: calc(100%);position: absolute; padding: 20px; border-radius: 10px; background-color: #fff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                                 <ul class="d-flex align-items-center flex-col">
                                     <li>
-                                        <a href="order-history.php" style="color: #000;">Your history order
+                                        <a href="order-history.php" style="color: #000;">History order
                                             <ion-icon name="reload-outline"></ion-icon>
                                         </a>    
                                     </li>

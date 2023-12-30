@@ -1,6 +1,6 @@
 <!-- Title Page -->
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-    style="background-image: url(images/bg-title-page-03.jpg);">
+    style="background-image: url(public/images/bg-title-page-03.jpg);">
     <h2 class="tit6 t-center">
         About Us
     </h2>
@@ -28,7 +28,7 @@
 
 
 <!-- Video -->
-<section class="section-video parallax100" style="background-image: url(images/header-menu-01.jpg);">
+<section class="section-video parallax100" style="background-image: url(public/images/header-menu-01.jpg);">
     <div class="content-video t-center p-t-225 p-b-250">
         <span class="tit2 p-l-15 p-r-15">
             Discover
@@ -72,7 +72,7 @@
 
             <div class="col-md-6 p-b-30">
                 <div class="wrap-pic-delicious size2 bo-rad-10 hov-img-zoom m-l-r-auto">
-                    <img src="images/our-story-01.jpg" alt="IMG-OUR">
+                    <img src="public/images/our-story-01.jpg" alt="IMG-OUR">
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
         <div class="row p-t-170">
             <div class="col-md-6 p-b-30">
                 <div class="wrap-pic-romantic size2 bo-rad-10 hov-img-zoom m-l-r-auto">
-                    <img src="images/our-story-02.jpg" alt="IMG-OUR">
+                    <img src="public/images/our-story-02.jpg" alt="IMG-OUR">
                 </div>
             </div>
 
@@ -108,7 +108,7 @@
 
 
 <!-- Banner -->
-<div class="parallax0 parallax100" style="background-image: url(images/bg-cover-video-02.jpg);">
+<div class="parallax0 parallax100" style="background-image: url(public/images/bg-cover-video-02.jpg);">
     <div class="overlay0-parallax t-center size33"></div>
 </div>
 
@@ -129,7 +129,7 @@
                 <!-- -Block5 -->
                 <div class="blo5 pos-relative p-t-60">
                     <div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">
-                        <a href="#"><img src="images/avatar-02.jpg" alt="IGM-AVATAR"></a>
+                        <a href="#"><img src="public/images/avatar-02.jpg" alt="IGM-AVATAR"></a>
                     </div>
 
                     <div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
@@ -153,7 +153,7 @@
                 <!-- -Block5 -->
                 <div class="blo5 pos-relative p-t-60">
                     <div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">
-                        <a href="#"><img src="images/avatar-03.jpg" alt="IGM-AVATAR"></a>
+                        <a href="#"><img src="public/images/avatar-03.jpg" alt="IGM-AVATAR"></a>
                     </div>
 
                     <div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
@@ -177,7 +177,7 @@
                 <!-- -Block5 -->
                 <div class="blo5 pos-relative p-t-60">
                     <div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">
-                        <a href="#"><img src="images/avatar-05.jpg" alt="IGM-AVATAR"></a>
+                        <a href="#"><img src="public/images/avatar-05.jpg" alt="IGM-AVATAR"></a>
                     </div>
 
                     <div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
