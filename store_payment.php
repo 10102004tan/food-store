@@ -1,5 +1,6 @@
 <?php
 include 'config/database.php';
+require_once 'app/views/blocks/order-form-success.php';
 $momoPayment = new MomoPayment();
 $order = new Order();
 if (
@@ -33,14 +34,71 @@ if (
     $signature = $_GET["signature"];
     $paymentOption = $_GET["paymentOption"];
     $resultCode = $_GET["resultCode"];
+    $order_data = $order->getOrderByOrderId($orderId);
 
     if ($momoPayment->store($orderId, $partnerCode, $requestId, $amount, $orderType, $transId, $resultCode, $message, $payType, $responseTime, $extraData, $signature, $paymentOption, $orderInfo)) {
         if ($resultCode == 0 && $message == "Successful.") {
-            // Update payment status for order
+            $email = $order_data['email'];
+            $subject = "Đơn hàng #$orderId đã được xác nhận!
+            ";
+            $content = createFormOrderSuccess($orderId,$order_data['fullname'],$order_data['address'],$amount,$order_data['phone']);
+            sendCodeMail($email,$subject,$content);
             $order->updatePaymentStatusToSuccess($orderId);
-            // Clear session cart
             unset($_SESSION['cart']);
         }
+        
         header("location: ./order-history.php");
     }
 }
+
+
+function sendCodeMail($email,$subject, $content)
+{
+    require "public/phpmailer/src/PHPMailer.php";
+    require "public/phpmailer/src/SMTP.php";
+    require 'public/phpmailer/src/Exception.php';
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true); //true:enables exceptions
+    try {
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();
+        $mail->CharSet = "utf-8";
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'tannp.42.student@fit.tdc.edu.vn';
+        $mail->Password = 'tandz1234';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+        $mail->setFrom('tannp.42.student@fit.tdc.edu.vn', 'Food store admin');
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $noidungthu = $content;
+        $mail->Body = $noidungthu;
+        $mail->smtpConnect(array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                "allow_self_signed" => true
+            )
+        ));
+        $mail->send();
+        echo 'Đã gửi mail xong';
+        return true;
+    } catch (Exception $e) {
+        echo 'Error: ', $mail->ErrorInfo;
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

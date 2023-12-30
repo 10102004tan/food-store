@@ -46,6 +46,7 @@ require_once "controllerUserData.php";
                     <div class="form-group">
                         <input class="form-control button" type="submit" name="check-verify-code" value="Submit">
                     </div>
+                    <a href="login.php" class="btn btn-warning">Login</a>
                 </form>
             </div>
         </div>
