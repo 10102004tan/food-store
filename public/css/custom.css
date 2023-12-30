@@ -560,3 +560,7 @@ table {
   opacity: 1;
   visibility: visible;
 }
+
+.btn {
+  text-transform: capitalize;
+}

@@ -27,6 +27,10 @@ if (isset($_GET['page'])) {
 $total = $order->getTotalOrder();
 $orders = $order->getAllOrderLimit(($page - 1) * $perPage, $perPage);
 $endPage = ceil($total / $perPage);
+if ($endPage == 1) {
+    $endPage = 0;
+}
+
 $data = [
     'title' => 'Order Management',
     'slot' => $template->render('order-data', ['orders' => $orders, 'endPage' => $endPage])

@@ -1,7 +1,6 @@
 <?php
 include '../../config/database.php';
 $member = new Member();
-$member = new Member();
 if (isset($_COOKIE["token"])) {
     $token = $_COOKIE["token"];
     $user = $member->getUserByToken($token);
@@ -26,6 +25,9 @@ if (isset($_GET['page'])) {
 $total = $menu->getTotalMenu();
 $menu_data = $menu->getAllMenuLimit(($page - 1) * $perPage, $perPage);
 $endPage = ceil($total / $perPage);
+if ($endPage == 1) {
+    $endPage = 0;
+}
 $data = [
     'title' => 'Manage Menu',
     'slot' => $template->render('menu-data', ['menu_data' => $menu_data, 'endPage' => $endPage])
